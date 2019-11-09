@@ -5,6 +5,6 @@ import pw.stas.qautils.model.Sentence;
 public interface RandomSentenceDao {
 
   Sentence getRandomSentence();
-  void setSymbolsCount(int symbolsCount);
+  void setSymbolsCount(Integer symbolsCount);
 
 }

@@ -1,8 +1,5 @@
 package pw.stas.qautils.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Sentence {
 
   private Long sentenceId;
@@ -38,9 +35,9 @@ public class Sentence {
 
   @Override
   public String toString() {
-    return "RandomText{" +
+    return "Sentence{" +
         "id=" + sentenceId +
-        ", response='" + sentence + '\'' +
+        ", sentence='" + sentence + '\'' +
         '}';
   }
 }

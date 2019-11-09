@@ -6,21 +6,21 @@ import org.springframework.util.StringUtils;
 
 public class RandomSentenceGenerator {
 
-  private Integer count;
+  private Integer symbolsCount;
 
   public String generate() {
 
-    if (count == null) {
-      count = 100;
+    if (symbolsCount == null) {
+      symbolsCount = 200;
     }
 
     return StringUtils.capitalize(
-        RandomStringUtils.random(count, "abcdefghijklmnopqrstuvwxyz ")
+        RandomStringUtils.random(symbolsCount, "abcdefghijklmnopqrstuvwxyz ")
             .replaceAll(" {2}\\w", ". A")
     );
   }
 
-  public void setSymbolsCount(Integer count) {
-    this.count = count;
+  public void setSymbolsCount(Integer symbolsCount) {
+    this.symbolsCount = symbolsCount;
   }
 }

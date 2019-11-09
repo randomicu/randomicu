@@ -16,12 +16,9 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   }
 
   @Override
-  public Sentence getRandomSentence() {
-    return randomSentenceDao.getRandomSentence();
-  }
-
-  @Override
-  public void setSymbolsCount(int symbolsCount) {
+  public Sentence getRandomSentence(Integer symbolsCount) {
     randomSentenceDao.setSymbolsCount(symbolsCount);
+
+    return randomSentenceDao.getRandomSentence();
   }
 }
