@@ -21,8 +21,8 @@ public class RandomTextController {
   }
 
   @RequestMapping(value = RANDOM_SENTENCE_GENERATOR_PATH)
-  public Sentence RandomSentenceGenerator(@RequestParam(required = false) Integer symbolsCount) {
+  public Sentence RandomSentenceGenerator(@RequestParam(required = false) Integer count) {
 
-    return randomSentenceService.getRandomSentence(symbolsCount);
+    return randomSentenceService.getRandomSentence(count);
   }
 }
