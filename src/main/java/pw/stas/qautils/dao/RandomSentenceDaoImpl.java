@@ -27,6 +27,11 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   @Override
   public void setSymbolsCount(Integer symbolsCount) {
+
+    if(symbolsCount == null || symbolsCount < 0) {
+      symbolsCount = 200;
+    }
+
     sentence.setSymbolsCount(symbolsCount);
     sentenceGenerator.setSymbolsCount(symbolsCount);
   }

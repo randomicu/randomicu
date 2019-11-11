@@ -10,10 +10,6 @@ public class RandomSentenceGenerator {
 
   public String generate() {
 
-    if (symbolsCount == null) {
-      symbolsCount = 200;
-    }
-
     return StringUtils.capitalize(
         RandomStringUtils.random(symbolsCount, "abcdefghijklmnopqrstuvwxyz ")
             .replaceAll(" {2}\\w", ". A")
