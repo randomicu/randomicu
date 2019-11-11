@@ -12,15 +12,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+  @Test
+  void contextLoads() {
+  }
 
-	@Test
-	void exampleTest(@Autowired MockMvc mvc) throws Exception {
+  @Test
+  void exampleTest(@Autowired MockMvc mvc) throws Exception {
 
-		mvc.perform(get("/api")).andExpect(status().isNotFound());
+    mvc.perform(get("/api")).andExpect(status().isNotFound());
 
-	}
+  }
 
 }
