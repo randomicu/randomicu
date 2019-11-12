@@ -1,6 +1,7 @@
 package pw.stas.qautils.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,17 @@ public class RandomTextController {
     this.randomSentenceService = randomSentenceService;
   }
 
-  @RequestMapping(value = RANDOM_SENTENCE_GENERATOR_PATH)
-  public Sentence RandomSentenceGenerator(@RequestParam(required = false) Integer count) {
+  @RequestMapping(value = RANDOM_SENTENCE_GENERATOR_PATH,
+      produces = {MediaType.APPLICATION_JSON_VALUE})
+  public Sentence RandomSentenceJsonGenerator(@RequestParam(required = false) Integer count) {
 
     return randomSentenceService.getRandomSentence(count);
+  }
+
+  @RequestMapping(value = RANDOM_SENTENCE_GENERATOR_PATH,
+      produces = {MediaType.TEXT_PLAIN_VALUE})
+  public String RandomSentenceTextGenerator(@RequestParam(required = false) Integer count) {
+
+    return randomSentenceService.getRandomSentence(count).getSentence();
   }
 }
