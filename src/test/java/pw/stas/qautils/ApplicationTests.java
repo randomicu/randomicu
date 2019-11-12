@@ -22,7 +22,7 @@ class ApplicationTests {
   private MockMvc mvc;
 
   @Test
-  void defaultSymbolsCountTest() throws Exception {
+  void defaultSymbolsCountReturnJsonTest() throws Exception {
 
     mvc.perform(get("/api/generators/random-text"))
         .andExpect(status().isOk())
@@ -32,7 +32,7 @@ class ApplicationTests {
   }
 
   @Test
-  void customSymbolscountTest() throws Exception {
+  void customSymbolsCountReturnJsonTest() throws Exception {
 
     mvc.perform(get("/api/generators/random-text?count=500"))
         .andExpect(status().isOk())
@@ -43,7 +43,7 @@ class ApplicationTests {
   }
 
   @Test
-  void negativeSymbolsCountTest() throws Exception {
+  void negativeSymbolsCountReturnJsonTest() throws Exception {
 
     mvc.perform(get("/api/generators/random-text?count=-2000"))
         .andExpect(status().isOk())
@@ -55,7 +55,7 @@ class ApplicationTests {
 
   @Test
   @Disabled
-  void stringAsSymbolsCountTest() throws Exception {
+  void stringAsSymbolsCountReturnJsonTest() throws Exception {
 
     mvc.perform(get("/api/generators/random-text?count=abc"))
         .andExpect(status().isOk())
@@ -67,13 +67,35 @@ class ApplicationTests {
 
   @Test
   @Disabled
-  void mixedCharactersAsSymbolsCountTest() throws Exception {
+  void mixedCharactersAsSymbolsCountReturnJsonTest() throws Exception {
 
     mvc.perform(get("/api/generators/random-text?count=abc500"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(200)))
         .andExpect(jsonPath("$.symbols_count", hasToString("200")));
+
+  }
+
+  @Test
+  void defaultSymbolsCountReturnTextTest() throws Exception {
+
+    mvc.perform(get("/api/generators/random-text")
+        .accept(MediaType.TEXT_PLAIN))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
+        .andExpect(content().string(hasLength(200)));
+
+  }
+
+  @Test
+  void customSymbolsCountReturnTextTest() throws Exception {
+
+    mvc.perform(get("/api/generators/random-text?count=400")
+        .accept(MediaType.TEXT_PLAIN))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
+        .andExpect(content().string(hasLength(400)));
 
   }
 }
