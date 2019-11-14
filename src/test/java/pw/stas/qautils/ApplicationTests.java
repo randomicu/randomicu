@@ -2,7 +2,6 @@ package pw.stas.qautils;
 
 import static org.hamcrest.Matchers.hasLength;
 import static org.hamcrest.Matchers.hasToString;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -39,7 +38,6 @@ class ApplicationTests {
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(500)))
         .andExpect(jsonPath("$.symbols_count", hasToString("500")));
-
   }
 
   @Test
@@ -50,31 +48,26 @@ class ApplicationTests {
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(200)))
         .andExpect(jsonPath("$.symbols_count", hasToString("200")));
-
   }
 
   @Test
-  @Disabled
   void stringAsSymbolsCountReturnJsonTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=abc"))
-        .andExpect(status().isOk())
+    mvc.perform(get("/api/generators/random-text?count=abc")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().is4xxClientError())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentence", hasLength(200)))
-        .andExpect(jsonPath("$.symbols_count", hasToString("200")));
-
+        .andExpect(jsonPath("$.exception", hasToString("Argument should be a number")));
   }
 
   @Test
-  @Disabled
   void mixedCharactersAsSymbolsCountReturnJsonTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=abc500"))
-        .andExpect(status().isOk())
+    mvc.perform(get("/api/generators/random-text?count=abc500")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().is4xxClientError())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentence", hasLength(200)))
-        .andExpect(jsonPath("$.symbols_count", hasToString("200")));
-
+        .andExpect(jsonPath("$.exception", hasToString("Argument should be a number")));
   }
 
   @Test
@@ -85,7 +78,6 @@ class ApplicationTests {
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
         .andExpect(content().string(hasLength(200)));
-
   }
 
   @Test
@@ -96,6 +88,5 @@ class ApplicationTests {
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
         .andExpect(content().string(hasLength(400)));
-
   }
 }
