@@ -16,7 +16,7 @@ public class GeneralExceptionHandlerTest extends BaseApplicationTests {
   private MockMvc mvc;
 
   @Test
-  void methodIsNotSupportedExceptionJsonTest() throws Exception {
+  public void methodIsNotSupportedExceptionJsonTest() throws Exception {
 
     mvc.perform(post("/api/generators/random-text")
         .accept(MediaType.APPLICATION_JSON))

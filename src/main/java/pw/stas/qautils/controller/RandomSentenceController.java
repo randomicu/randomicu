@@ -23,14 +23,14 @@ public class RandomSentenceController {
   }
 
   @GetMapping(value = RANDOM_SENTENCE_GENERATOR_PATH)
-  public Sentence RandomSentenceJsonGenerator(@RequestParam(required = false) Integer count) {
+  public Sentence randomSentenceJsonGenerator(@RequestParam(required = false) Integer count) {
 
     return randomSentenceService.getRandomSentence(count);
   }
 
   @GetMapping(value = RANDOM_SENTENCE_GENERATOR_PATH,
       produces = {MediaType.TEXT_PLAIN_VALUE})
-  public String RandomSentenceTextGenerator(@RequestParam(required = false) Integer count) {
+  public String randomSentenceTextGenerator(@RequestParam(required = false) Integer count) {
 
     return randomSentenceService.getRandomSentence(count).getSentence();
   }

@@ -10,7 +10,7 @@ class RandomSentenceGeneratorTest {
   private RandomSentenceGenerator generator;
 
   @BeforeEach
-  void setup() {
+  void setUp() {
     generator = new RandomSentenceGenerator();
   }
 
