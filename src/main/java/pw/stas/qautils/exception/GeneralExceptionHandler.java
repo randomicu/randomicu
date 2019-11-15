@@ -32,7 +32,6 @@ public class GeneralExceptionHandler {
 
   @ExceptionHandler
   public ResponseEntity<?> handleHttpMediaTypeNotAcceptableException(HttpMediaTypeNotAcceptableException exc) {
-
     return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exc.getLocalizedMessage());
   }
 
