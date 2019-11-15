@@ -1,0 +1,21 @@
+version: v1.0
+name: Deploy to production
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build and Push
+    task:
+      secrets:
+        - name: Docker Hub Token
+      prologue:
+        commands:
+          - sem-version java 11
+          - checkout
+          - cache restore
+          - cache restore docker-credential
+      jobs:
+        - name: Build and push Docker Image
+          commands:
+            - mvn --batch-mode --file pom.xml install -DskipTests -Pproduction
