@@ -1,21 +1,18 @@
-package pw.stas.qautils;
+package pw.stas.qautils.controller;
 
 import static org.hamcrest.Matchers.hasLength;
 import static org.hamcrest.Matchers.hasToString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import pw.stas.qautils.BaseApplicationTests;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
-class ApplicationTests {
+public class RandomSentenceControllerTest extends BaseApplicationTests {
 
   @Autowired
   private MockMvc mvc;
@@ -71,6 +68,16 @@ class ApplicationTests {
   }
 
   @Test
+  void mixedCharactersAsSymbolsCountReturnTextTest() throws Exception {
+
+    mvc.perform(get("/api/generators/random-text?count=abc500")
+        .accept(MediaType.TEXT_PLAIN))
+        .andExpect(status().is4xxClientError())
+        .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
+        .andExpect(content().string("Argument should be a number"));
+  }
+
+  @Test
   void defaultSymbolsCountReturnTextTest() throws Exception {
 
     mvc.perform(get("/api/generators/random-text")
@@ -78,6 +85,7 @@ class ApplicationTests {
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
         .andExpect(content().string(hasLength(200)));
+
   }
 
   @Test
