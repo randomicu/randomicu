@@ -8,8 +8,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import pw.stas.qautils.model.GeneralException;
-
 
 @ControllerAdvice
 public class GeneralExceptionHandler {
@@ -35,13 +33,7 @@ public class GeneralExceptionHandler {
   @ExceptionHandler
   public ResponseEntity<?> handleHttpMediaTypeNotAcceptableException(HttpMediaTypeNotAcceptableException exc) {
 
-    GeneralException response = new GeneralException(
-        HttpStatus.NOT_ACCEPTABLE.value(),
-        exc.getLocalizedMessage(),
-        System.currentTimeMillis()
-    );
-
-    return new ResponseEntity<>(response, HttpStatus.NOT_ACCEPTABLE);
+    return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exc.getLocalizedMessage());
   }
 
   @ExceptionHandler

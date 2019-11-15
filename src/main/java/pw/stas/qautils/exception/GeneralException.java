@@ -1,4 +1,4 @@
-package pw.stas.qautils.model;
+package pw.stas.qautils.exception;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
