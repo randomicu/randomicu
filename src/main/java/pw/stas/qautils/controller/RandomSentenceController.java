@@ -13,12 +13,12 @@ import pw.stas.qautils.service.RandomSentenceService;
 
 @RestController
 @RequestMapping(API_ROOT_PATH)
-public class RandomTextController {
+public class RandomSentenceController {
 
   private final RandomSentenceService randomSentenceService;
 
   @Autowired
-  public RandomTextController(RandomSentenceService randomSentenceService) {
+  public RandomSentenceController(RandomSentenceService randomSentenceService) {
     this.randomSentenceService = randomSentenceService;
   }
 
