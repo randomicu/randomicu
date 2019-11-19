@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  reverse-proxy:
+    image: traefik:2.0
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ${PWD}/traefik.toml:/etc/traefik/traefik.toml
+      - ${PWD}/traefik.config.toml:/etc/traefik/traefik.config.toml
+      - ${PWD}/devcerts:/etc/certs
+    restart: always
+
+  qa-utils-webapp:
+    image: pythoninja/qa-utils:latest
+    container_name: "qa-utils-webapp"
+    expose:
+      - 8080
+    restart: on-failure
