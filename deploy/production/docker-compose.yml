@@ -23,7 +23,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: always
     env_file:
-      - ./.env
+      - .env
 
   qa-utils-webapp:
     image: pythoninja/qa-utils:latest
@@ -42,4 +42,4 @@ services:
       - 8080
     restart: on-failure
     env_file:
-      - ./.env
+      - .env
