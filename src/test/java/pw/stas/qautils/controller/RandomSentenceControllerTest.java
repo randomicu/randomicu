@@ -24,7 +24,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(200)))
-        .andExpect(jsonPath("$.symbols_count", hasToString("200")));
+        .andExpect(jsonPath("$.symbols", hasToString("200")));
   }
 
   @Test
@@ -34,7 +34,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(500)))
-        .andExpect(jsonPath("$.symbols_count", hasToString("500")));
+        .andExpect(jsonPath("$.symbols", hasToString("500")));
   }
 
   @Test
@@ -44,7 +44,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(200)))
-        .andExpect(jsonPath("$.symbols_count", hasToString("200")));
+        .andExpect(jsonPath("$.symbols", hasToString("200")));
   }
 
   @Test
