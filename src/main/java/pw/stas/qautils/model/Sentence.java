@@ -11,7 +11,7 @@ public class Sentence {
 
   private String sentence;
 
-  @JsonProperty("symbols_count")
+  @JsonProperty("symbols")
   private Integer symbolsCount;
 
 }
