@@ -18,7 +18,7 @@ public class GeneralExceptionHandlerTest extends BaseApplicationTests {
   @Test
   public void methodIsNotSupportedExceptionJsonTest() throws Exception {
 
-    mvc.perform(post("/api/generators/random-text")
+    mvc.perform(post(RANDOM_SENTENCE_URL)
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isMethodNotAllowed())
         .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
@@ -27,7 +27,7 @@ public class GeneralExceptionHandlerTest extends BaseApplicationTests {
   @Test
   void methodIsNotSupportedExceptionTextTest() throws Exception {
 
-    mvc.perform(post("/api/generators/random-text")
+    mvc.perform(post(RANDOM_SENTENCE_URL)
         .accept(MediaType.TEXT_PLAIN))
         .andExpect(status().isMethodNotAllowed())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN));
@@ -36,7 +36,7 @@ public class GeneralExceptionHandlerTest extends BaseApplicationTests {
   @Test
   void mediaTypeNotAcceptableExceptionTextTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text")
+    mvc.perform(get(RANDOM_SENTENCE_URL)
         .accept("not/acceptable"))
         .andExpect(status().isNotAcceptable())
         .andExpect(content().string("Could not find acceptable representation"));
