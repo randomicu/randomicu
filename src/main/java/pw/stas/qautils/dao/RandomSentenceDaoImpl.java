@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pw.stas.qautils.model.Sentence;
 import pw.stas.qautils.model.Sentences;
@@ -17,6 +18,12 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   private final RandomSentenceGenerator sentenceGenerator;
   private final Sentence sentence;
   private final Sentences sentences;
+
+  @Value("${qa-utils.sentence.default-length:100}")
+  private Integer sentenceDefaultLength;
+
+  @Value("${qa-utils.sentences-count.default:2}")
+  private Integer sentencesDefaultCount;
 
   @Autowired
   public RandomSentenceDaoImpl(RandomSentenceGenerator sentenceGenerator) {
@@ -38,7 +45,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
     var count = symbolsCount;
 
     if (count == null || count < 0) {
-      count = 200;
+      count = sentenceDefaultLength;
     }
 
     sentence.setSymbolsCount(count);
@@ -50,7 +57,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
     var count = sentencesCount;
 
     if (count == null || count < 0) {
-      count = 1;
+      count = sentencesDefaultCount;
     }
 
     sentences.setSentencesCount(count);

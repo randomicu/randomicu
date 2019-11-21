@@ -106,7 +106,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentences", hasSize(1)))
+        .andExpect(jsonPath("$.sentences", hasSize(3)))
         .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
         .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
   }
