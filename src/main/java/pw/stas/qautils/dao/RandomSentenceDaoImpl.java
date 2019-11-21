@@ -70,7 +70,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
         .collect(Collectors.toList());
 
     Map<String, List<Sentence>> sentencesMap = new HashMap<>();
-    sentencesMap.put("sentence", sentenceList);
+    sentencesMap.put("sentences", sentenceList);
 
     return sentencesMap;
   }
