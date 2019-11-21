@@ -1,6 +1,7 @@
 package pw.stas.qautils.controller;
 
 import static org.hamcrest.Matchers.hasLength;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.hasToString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void defaultSymbolsCountReturnJsonTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text"))
+    mvc.perform(get(RANDOM_SENTENCE_URL))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(200)))
@@ -30,7 +31,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void customSymbolsCountReturnJsonTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=500"))
+    mvc.perform(get(RANDOM_SENTENCE_URL + "?count=500"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(500)))
@@ -40,7 +41,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void negativeSymbolsCountReturnJsonTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=-2000"))
+    mvc.perform(get(RANDOM_SENTENCE_URL + "?count=-2000"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentence", hasLength(200)))
@@ -50,7 +51,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void stringAsSymbolsCountReturnJsonTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=abc")
+    mvc.perform(get(RANDOM_SENTENCE_URL + "?count=abc")
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().is4xxClientError())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -60,7 +61,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void mixedCharactersAsSymbolsCountReturnJsonTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=abc500")
+    mvc.perform(get(RANDOM_SENTENCE_URL + "?count=abc500")
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().is4xxClientError())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -70,7 +71,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void mixedCharactersAsSymbolsCountReturnTextTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=abc500")
+    mvc.perform(get(RANDOM_SENTENCE_URL + "?count=abc500")
         .accept(MediaType.TEXT_PLAIN))
         .andExpect(status().is4xxClientError())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
@@ -80,7 +81,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void defaultSymbolsCountReturnTextTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text")
+    mvc.perform(get(RANDOM_SENTENCE_URL)
         .accept(MediaType.TEXT_PLAIN))
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
@@ -91,10 +92,22 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void customSymbolsCountReturnTextTest() throws Exception {
 
-    mvc.perform(get("/api/generators/random-text?count=400")
+    mvc.perform(get(RANDOM_SENTENCE_URL + "?count=400")
         .accept(MediaType.TEXT_PLAIN))
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
         .andExpect(content().string(hasLength(400)));
+  }
+
+  @Test
+  void defaultRandomSentencesGeneratorTest() throws Exception {
+
+    mvc.perform(get(RANDOM_SENTENCES_URL)
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.sentences", hasSize(1)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
   }
 }
