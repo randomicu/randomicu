@@ -14,7 +14,7 @@ public class RandomSentenceGenerator {
     return StringUtils.capitalize(
         RandomStringUtils.random(symbolsCount, "abcdefghijklmnopqrstuvwxyz ")
             .replaceAll(" {2}\\w", ". A")
-    );
+            .replaceAll("^\\s", "R"));
   }
 
   public void setSymbolsCount(Integer symbolsCount) {
