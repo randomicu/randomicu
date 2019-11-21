@@ -42,11 +42,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   @Override
   public void setSymbolsCount(Integer symbolsCount) {
-    var count = symbolsCount;
-
-    if (count == null || count < 0) {
-      count = sentenceDefaultLength;
-    }
+    var count = checkIfCountValid(symbolsCount) ? symbolsCount : sentenceDefaultLength;
 
     sentence.setSymbolsCount(count);
     sentenceGenerator.setSymbolsCount(count);
@@ -54,11 +50,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   @Override
   public void setSentencesCount(Integer sentencesCount) {
-    var count = sentencesCount;
-
-    if (count == null || count < 0) {
-      count = sentencesDefaultCount;
-    }
+    var count = checkIfCountValid(sentencesCount) ? sentencesCount : sentencesDefaultCount;
 
     sentences.setSentencesCount(count);
   }
@@ -80,5 +72,9 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
     sentencesMap.put("sentences", sentenceList);
 
     return sentencesMap;
+  }
+
+  private boolean checkIfCountValid(Integer count) {
+    return count != null && count > 0;
   }
 }
