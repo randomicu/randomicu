@@ -106,7 +106,67 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentences", hasSize(3)))
+        .andExpect(jsonPath("$.sentences", hasSize(2)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+  }
+
+  @Test
+  void symbolsCountAndSentencesCountGreaterThanMaxTest() throws Exception {
+
+    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=5001&sentencesCount=11")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.sentences", hasSize(2)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+  }
+
+  @Test
+  void symbolsCountGreaterThatMaxAndSentencesCountIsMaxTest() throws Exception {
+
+    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=5001&sentencesCount=10")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.sentences", hasSize(10)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+  }
+
+  @Test
+  void symbolsCountIsMaxAndSentencesCountGreaterThatMaxTest() throws Exception {
+
+    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=5000&sentencesCount=11")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.sentences", hasSize(2)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(5000)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("5000")));
+  }
+
+  @Test
+  void symbolsCountIsZeroAndSentencesCountIsOneTest() throws Exception {
+
+    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=0&sentencesCount=1")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.sentences", hasSize(1)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+  }
+
+  @Test
+  void symbolsCountAndSentencesCountIsZeroTest() throws Exception {
+
+    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=0&sentencesCount=0")
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.sentences", hasSize(2)))
         .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
         .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
   }

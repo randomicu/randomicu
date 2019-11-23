@@ -3,6 +3,7 @@ package pw.stas.qautils.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,17 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   private final Sentence sentence;
   private final Sentences sentences;
 
-  @Value("${qa-utils.sentence.default-length:100}")
-  private Integer sentenceDefaultLength;
+  @Value("${qa-utils.sentence.default-length}")
+  private Integer defaultSentenceLength;
 
-  @Value("${qa-utils.sentences-count.default:2}")
-  private Integer sentencesDefaultCount;
+  @Value("${qa-utils.sentence.default-sentences-count}")
+  private Integer defaultSentencesCount;
+
+  @Value("${qa-utils.sentence.max-sentence-length}")
+  private Integer maxSentenceLength;
+
+  @Value("${qa-utils.sentence.max-sentences-count}")
+  private Integer maxSentencesCount;
 
   @Autowired
   public RandomSentenceDaoImpl(RandomSentenceGenerator sentenceGenerator) {
@@ -42,7 +49,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   @Override
   public void setSymbolsCount(Integer symbolsCount) {
-    var count = checkIfCountValid(symbolsCount) ? symbolsCount : sentenceDefaultLength;
+    var count = checkIfSymbolsCountValid(symbolsCount) ? symbolsCount : defaultSentenceLength;
 
     sentence.setSymbolsCount(count);
     sentenceGenerator.setSymbolsCount(count);
@@ -50,7 +57,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   @Override
   public void setSentencesCount(Integer sentencesCount) {
-    var count = checkIfCountValid(sentencesCount) ? sentencesCount : sentencesDefaultCount;
+    var count = checkIfSentencesCountValid(sentencesCount) ? sentencesCount : defaultSentencesCount;
 
     sentences.setSentencesCount(count);
   }
@@ -74,7 +81,21 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
     return sentencesMap;
   }
 
-  private boolean checkIfCountValid(Integer count) {
-    return count != null && count > 0;
+  private boolean checkifNotNull(Integer count) {
+    return Objects.nonNull(count);
+  }
+
+  private boolean checkIfSymbolsCountValid(Integer symbolsCount) {
+    if (checkifNotNull(symbolsCount) && symbolsCount > 0) {
+      return symbolsCount <= maxSentenceLength;
+    }
+    return false;
+  }
+
+  private boolean checkIfSentencesCountValid(Integer sentencesCount) {
+    if (checkifNotNull(sentencesCount) && sentencesCount > 0) {
+      return sentencesCount <= maxSentencesCount;
+    }
+    return false;
   }
 }
