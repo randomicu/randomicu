@@ -8,10 +8,14 @@ import org.junit.jupiter.api.Test;
 class RandomSentenceGeneratorTest {
 
   private RandomSentenceGenerator generator;
+  private int minWordLenght = 2;
+  private int maxWordLenght = 15;
 
   @BeforeEach
   void setUp() {
     generator = new RandomSentenceGenerator();
+    generator.setMinWordLength(minWordLenght);
+    generator.setMaxWordLength(maxWordLenght);
   }
 
   @Test
@@ -23,14 +27,12 @@ class RandomSentenceGeneratorTest {
   @Test
   void generateRandomSentenceWithoutLength() {
     assertThrows(NullPointerException.class,
-        () -> {
-          assertEquals(200, generator.generate().length(), "Sentence symbols count is not equals to 200");
-        });
+        () -> assertEquals(200, generator.generate().length(), "Sentence symbols count is not equals to 200"));
   }
 
   @Test
   void generateRandomSentenceIfNegativeInteger() {
-    assertThrows(IllegalArgumentException.class,
+    assertThrows(StringIndexOutOfBoundsException.class,
         () -> {
           generator.setSymbolsCount(-10);
           assertEquals(200, generator.generate().length(), "Sentence symbols count is not equals to 200");

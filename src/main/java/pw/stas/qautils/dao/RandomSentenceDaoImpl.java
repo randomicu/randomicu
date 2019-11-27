@@ -32,6 +32,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   @Value("${qa-utils.sentence.max-sentences-count}")
   private Integer maxSentencesCount;
 
+
   @Autowired
   public RandomSentenceDaoImpl(RandomSentenceGenerator sentenceGenerator) {
     this.sentenceGenerator = sentenceGenerator;
@@ -41,7 +42,6 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   @Override
   public Sentence getRandomSentence() {
-
     sentence.setSentence(sentenceGenerator.generate());
 
     return sentence;
@@ -64,7 +64,6 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   @Override
   public Map<String, List<Sentence>> getRandomSentences() {
-
     List<Sentence> sentenceList = Stream.generate(
         () -> {
           var tempSentence = new Sentence();
@@ -81,10 +80,6 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
     return sentencesMap;
   }
 
-  private boolean checkifNotNull(Integer count) {
-    return Objects.nonNull(count);
-  }
-
   private boolean checkIfSymbolsCountValid(Integer symbolsCount) {
     if (checkifNotNull(symbolsCount) && symbolsCount > 0) {
       return symbolsCount <= maxSentenceLength;
@@ -97,5 +92,9 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
       return sentencesCount <= maxSentencesCount;
     }
     return false;
+  }
+
+  private boolean checkifNotNull(Integer count) {
+    return Objects.nonNull(count);
   }
 }
