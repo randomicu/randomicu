@@ -167,6 +167,7 @@
             <id>production</id>
             <properties>
                 <activatedProperties>production</activatedProperties>
+                <!--suppress UnresolvedMavenProperty -->
                 <version.number>${git.closest.tag.name}-${env.SEMAPHORE_WORKFLOW_NUMBER}</version.number>
             </properties>
         </profile>
