@@ -6,16 +6,18 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
+
     <groupId>pw.stas</groupId>
     <artifactId>qa-utils</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0</version>
     <name>qautils</name>
     <description>Useless QA Utils</description>
 
     <properties>
         <java.version>11</java.version>
+        <version.number>${git.closest.tag.name}-local</version.number>
     </properties>
 
     <dependencies>
@@ -66,7 +68,7 @@
                     <to>
                         <image>docker.io/pythoninja/qa-utils</image>
                         <tags>
-                            <tag>${project.version}</tag>
+                            <tag>${version.number}</tag>
                             <tag>latest</tag>
                         </tags>
                     </to>
@@ -101,8 +103,49 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>4.0.0</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                    <execution>
+                        <id>validate-semver-git-tag</id>
+                        <goals>
+                            <goal>validateRevision</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <injectAllReactorProjects>true</injectAllReactorProjects>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                    <includeOnlyProperties>
+                        <includeOnlyProperty>^git.build.time$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.closest.tag.name$</includeOnlyProperty>
+                    </includeOnlyProperties>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                    <validationShouldFailIfNoMatch>true</validationShouldFailIfNoMatch>
+                    <validationProperties>
+                        <validationProperty>
+                            <name>Validate semver tag</name>
+                            <value>${version.number}</value>
+                            <shouldMatchTo><![CDATA[^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$]]></shouldMatchTo>
+                        </validationProperty>
+                    </validationProperties>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>dev</id>
@@ -124,6 +167,7 @@
             <id>production</id>
             <properties>
                 <activatedProperties>production</activatedProperties>
+                <version.number>${git.closest.tag.name}-${env.SEMAPHORE_WORKFLOW_NUMBER}</version.number>
             </properties>
         </profile>
     </profiles>
