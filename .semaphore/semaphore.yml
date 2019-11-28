@@ -1,5 +1,5 @@
 version: v1.0
-name: Java
+name: Run tests
 agent:
   machine:
     type: e1-standard-2
@@ -9,7 +9,7 @@ blocks:
     dependencies: []
     task:
       env_vars:
-        - name: MAVEN_OPTS
+        - name: нMAVEN_OPTS
           value: '-Dmaven.repo.local=.m2'
       jobs:
         - name: Dependencies
