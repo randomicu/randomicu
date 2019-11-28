@@ -9,7 +9,7 @@ blocks:
     dependencies: []
     task:
       env_vars:
-        - name: нMAVEN_OPTS
+        - name: MAVEN_OPTS
           value: '-Dmaven.repo.local=.m2'
       jobs:
         - name: Dependencies
