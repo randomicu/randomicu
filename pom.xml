@@ -98,8 +98,7 @@
                         <id>build-and-push-docker-image</id>
                         <phase>package</phase>
                         <goals>
-<!--                            <goal>build</goal>-->
-                            <goal>dockerBuild</goal>
+                            <goal>build</goal>
                         </goals>
                     </execution>
                 </executions>
