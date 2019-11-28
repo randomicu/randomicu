@@ -11,13 +11,13 @@
 
     <groupId>pw.stas</groupId>
     <artifactId>qa-utils</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0</version>
     <name>qautils</name>
     <description>Useless QA Utils</description>
 
     <properties>
         <java.version>11</java.version>
-        <version.number>${git.closest.tag.name}-${env.SEMAPHORE_WORKFLOW_NUMBER}</version.number>
+        <version.number>${git.closest.tag.name}-local</version.number>
     </properties>
 
     <dependencies>
@@ -139,7 +139,7 @@
                         <validationProperty>
                             <name>Validate semver tag</name>
                             <value>${version.number}</value>
-                            <shouldMatchTo><![CDATA[^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$]]></shouldMatchTo>
+                            <shouldMatchTo><![CDATA[^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$]]></shouldMatchTo>
                         </validationProperty>
                     </validationProperties>
                 </configuration>
@@ -168,6 +168,7 @@
             <id>production</id>
             <properties>
                 <activatedProperties>production</activatedProperties>
+                <version.number>${git.closest.tag.name}-${env.SEMAPHORE_WORKFLOW_NUMBER}</version.number>
             </properties>
         </profile>
     </profiles>
