@@ -114,7 +114,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void symbolsCountAndSentencesCountGreaterThanMaxTest() throws Exception {
 
-    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=5001&sentencesCount=11")
+    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=15001&sentencesCount=11")
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -126,7 +126,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Test
   void symbolsCountGreaterThatMaxAndSentencesCountIsMaxTest() throws Exception {
 
-    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=5001&sentencesCount=10")
+    mvc.perform(get(RANDOM_SENTENCES_URL + "?count=15001&sentencesCount=10")
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
