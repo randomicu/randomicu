@@ -1,12 +1,12 @@
 package icu.random.service;
 
+import icu.random.model.Sentence;
 import java.util.List;
 import java.util.Map;
-import icu.random.model.Sentence;
 
 public interface RandomSentenceService {
 
-  Sentence getRandomSentence(Integer symbolsCount);
+  Sentence getRandomSentence(Integer symbolsCount, boolean isParagraphEnabled);
 
-  Map<String, List<Sentence>> getRandomSentences(Integer count, Integer sentencesCount);
+  Map<String, List<Sentence>> getRandomSentences(Integer count, Integer sentencesCount, boolean isParagraphsEnabled);
 }
