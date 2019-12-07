@@ -80,6 +80,10 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
     return sentencesMap;
   }
 
+  public void enableParagraphs(boolean isParagraphsEnabled) {
+    sentenceGenerator.setParagraphsEnabled(isParagraphsEnabled);
+  }
+
   private boolean checkIfSymbolsCountValid(Integer symbolsCount) {
     if (checkifNotNull(symbolsCount) && symbolsCount > 0) {
       return symbolsCount <= maxSentenceLength;

@@ -12,6 +12,7 @@ public class RandomSentenceGenerator {
   private Integer symbolsCount;
   private Integer minWordLength;
   private Integer maxWordLength;
+  private boolean paragraphsEnabled;
 
   public String generate() {
 
@@ -29,15 +30,23 @@ public class RandomSentenceGenerator {
 
       if (rnd.nextDouble() < 0.1) {
         sentence.append(".");
+
+        if (paragraphsEnabled && symbolsCount >= 500 && rnd.nextDouble() < 0.2) {
+          sentence.append("\n\n");
+        }
       }
 
-      sentence.append(" ");
+      if (!sentence.substring(sentence.length() - 2).startsWith("\n\n")) {
+        sentence.append(" ");
+      }
     }
 
-    String newSentence = sentence.substring(0, symbolsCount).replaceAll(".$", ".");
+    String newSentence = sentence.substring(0, symbolsCount)
+        .replaceAll(".$", ".")
+        .replaceAll("(?m)^[a-z]", "I");
 
     if (newSentence.endsWith(" .")) {
-      newSentence = newSentence.replace(" .", "a.");
+      newSentence = newSentence.replace(" .", "u.");
     }
 
     return newSentence;

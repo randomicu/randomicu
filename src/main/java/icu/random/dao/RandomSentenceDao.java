@@ -1,8 +1,8 @@
 package icu.random.dao;
 
+import icu.random.model.Sentence;
 import java.util.List;
 import java.util.Map;
-import icu.random.model.Sentence;
 
 public interface RandomSentenceDao {
 
@@ -11,6 +11,8 @@ public interface RandomSentenceDao {
   void setSymbolsCount(Integer symbolsCount);
   
   void setSentencesCount(Integer sentencesCount);
+
+  void enableParagraphs(boolean isParagraphsEnabled);
 
   Map<String, List<Sentence>> getRandomSentences();
 }
