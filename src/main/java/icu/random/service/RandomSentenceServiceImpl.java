@@ -1,11 +1,11 @@
 package icu.random.service;
 
+import icu.random.dao.RandomSentenceDao;
+import icu.random.model.Sentence;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import icu.random.dao.RandomSentenceDao;
-import icu.random.model.Sentence;
 
 @Service
 public class RandomSentenceServiceImpl implements RandomSentenceService {
@@ -18,16 +18,18 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   }
 
   @Override
-  public Sentence getRandomSentence(Integer symbolsCount) {
+  public Sentence getRandomSentence(Integer symbolsCount, boolean isParagraphsEnabled) {
     randomSentenceDao.setSymbolsCount(symbolsCount);
+    randomSentenceDao.enableParagraphs(isParagraphsEnabled);
 
     return randomSentenceDao.getRandomSentence();
   }
 
   @Override
-  public Map<String, List<Sentence>> getRandomSentences(Integer symbolsCount, Integer sentencesCount) {
+  public Map<String, List<Sentence>> getRandomSentences(Integer symbolsCount, Integer sentencesCount, boolean isParagraphsEnabled) {
     randomSentenceDao.setSymbolsCount(symbolsCount);
     randomSentenceDao.setSentencesCount(sentencesCount);
+    randomSentenceDao.enableParagraphs(isParagraphsEnabled);
 
     return randomSentenceDao.getRandomSentences();
   }
