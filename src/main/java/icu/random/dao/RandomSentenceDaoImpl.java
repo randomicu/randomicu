@@ -80,6 +80,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
     return sentencesMap;
   }
 
+  @Override
   public void enableParagraphs(boolean isParagraphsEnabled) {
     sentenceGenerator.setParagraphsEnabled(isParagraphsEnabled);
   }
