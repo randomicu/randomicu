@@ -1,8 +1,8 @@
-package icu.random.controller;
+package icu.random.controller.api;
 
-import static icu.random.api.ControllerPaths.API_ROOT_PATH;
-import static icu.random.api.ControllerPaths.RANDOM_SENTENCES_GENERATOR_PATH;
-import static icu.random.api.ControllerPaths.RANDOM_SENTENCE_GENERATOR_PATH;
+import static icu.random.api.ApiControllerPaths.API_ROOT_PATH;
+import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCES_GENERATOR_PATH;
+import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCE_GENERATOR_PATH;
 import icu.random.model.Sentence;
 import icu.random.service.RandomSentenceService;
 import java.util.List;
