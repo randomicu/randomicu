@@ -14,7 +14,6 @@ blocks:
           - sem-version java 11
           - checkout
           - cache restore
-          - cache restore node_modules
           - cache restore docker-credential
       jobs:
         - name: Build and push Docker Image

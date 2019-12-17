@@ -24,7 +24,7 @@ blocks:
             - checkout
             - cache restore
             - npm ci
-            - cache store node_modules
+            - cache store
         - name: Login to Docker Hub
           commands:
             - >-
