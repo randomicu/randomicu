@@ -18,4 +18,5 @@ blocks:
       jobs:
         - name: Build and push Docker Image
           commands:
+            - npm run build
             - mvn --batch-mode --file pom.xml install -DskipTests -Pproduction
