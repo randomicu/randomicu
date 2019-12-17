@@ -2,15 +2,6 @@ target/
 !**/src/main/**
 !**/src/test/**
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -48,8 +39,8 @@ buildNumber.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# Developer certificates
-devcerts/
+# Node modules dir
+node_modules/
 
-# Production certificates
-letsencrypt/
+# Parcel cache dir
+.cache/
