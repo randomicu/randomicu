@@ -1,0 +1,29 @@
+{
+  "name": "randomicu",
+  "version": "0.0.0",
+  "description": "Frontend part for random.icu - Free API for QA Engineers",
+  "dependencies": {
+    "purecss": "^1.0.1"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "parcel-bundler": "^1.12.4"
+  },
+  "scripts": {
+    "clean-parcel-cache": "rm -rf ./.cache",
+    "clean-node-cache": "rm -rf ./node_modules",
+    "clean": "npm run clean-node-cache && npm run clean-parcel-cache",
+    "dev": "parcel watch --out-dir ./target/classes/static ./src/main/resources/templates/index.html",
+    "build": "parcel build --no-source-maps --out-dir ./target/classes/static ./src/main/resources/templates/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pythoninja/randomicu.git"
+  },
+  "author": "pythoninja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pythoninja/randomicu/issues"
+  },
+  "homepage": "https://github.com/pythoninja/randomicu#readme"
+}

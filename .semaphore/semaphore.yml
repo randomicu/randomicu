@@ -12,13 +12,19 @@ blocks:
         - name: MAVEN_OPTS
           value: '-Dmaven.repo.local=.m2'
       jobs:
-        - name: Dependencies
+        - name: Maven install and cache
           commands:
             - sem-version java 11
             - checkout
             - cache restore
             - 'mvn -q dependency:go-offline test-compile'
             - cache store
+        - name: npm install and cache
+          commands:
+            - checkout
+            - cache restore
+            - npm ci
+            - cache store node_modules
         - name: Login to Docker Hub
           commands:
             - >-
