@@ -10,6 +10,9 @@
     "parcel-bundler": "^1.12.4"
   },
   "scripts": {
+    "clean-parcel-cache": "rm -rf ./.cache",
+    "clean-node-cache": "rm -rf ./node_modules",
+    "clean": "npm run clean-node-cache && npm run clean-parcel-cache",
     "dev": "parcel watch --out-dir ./target/classes/static ./src/main/resources/templates/index.html",
     "build": "parcel build --no-source-maps --out-dir ./target/classes/static ./src/main/resources/templates/index.html"
   },
