@@ -17,6 +17,7 @@ blocks:
             - sem-version java 11
             - checkout
             - cache restore
+            - npm ci
             - 'mvn -q dependency:go-offline test-compile'
             - cache store
         - name: Login to Docker Hub
