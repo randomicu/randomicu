@@ -9,6 +9,11 @@
       "section": "Bug Fixes"
     },
     {
+      "type": "refactor",
+      "section": "Bug Fixes",
+      "hidden": false
+    },
+    {
       "type": "test",
       "section": "Tests",
       "hidden": false
@@ -20,17 +25,14 @@
     },
     {
       "type": "ci",
-      "hidden": false
-    },
-    {
-      "type": "refactor",
+      "section": "CI / CD",
       "hidden": false
     },
     {
       "type": "chore",
-      "secion": "Other",
+      "section": "Other",
       "hidden": false
     }
   ],
-  "header": "Randomicu Changelog"
+  "header": "## Randomicu Changelog"
 }
