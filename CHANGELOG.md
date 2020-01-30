@@ -1,4 +1,16 @@
 ## Randomicu Changelog
+### [0.0.6](https://github.com/pythoninja/randomicu/compare/0.0.5...0.0.6) (2020-01-30)
+
+
+### Features
+
+* up max sentence length to 70k ([a11b8c2](https://github.com/pythoninja/randomicu/commit/a11b8c2715850a2deb7f077c3a38d6a6b1588197)), closes [#51](https://github.com/pythoninja/randomicu/issues/51)
+
+
+### Tests
+
+* fix max length in tests ([d06761a](https://github.com/pythoninja/randomicu/commit/d06761afe0e9a668c451fb762880b2be4bc42a11))
+
 ### [0.0.5](https://github.com/pythoninja/randomicu/compare/0.0.4...0.0.5) (2020-01-29)
 
 
