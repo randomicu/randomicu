@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.hasToString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -18,14 +19,32 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
   @Autowired
   private MockMvc mvc;
 
+  @Value("${randomicu.sentence.default-length}")
+  Integer sentenceDefaultLength;
+
+  @Value("${randomicu.sentence.default-sentences-count}")
+  Integer sentencesDefaultCount;
+
+  @Value("${randomicu.sentence.max-sentences-count}")
+  Integer maxSentencesCount;
+
+  @Value("${randomicu.sentence.max-sentence-length}")
+  Integer maxSentenceLength;
+
+  @Value("${randomicu.sentence.min-word-length}")
+  Integer minWordLength;
+
+  @Value("${randomicu.sentence.max-word-length}")
+  Integer maxWordLength;
+
   @Test
   void defaultSymbolsCountReturnJsonTest() throws Exception {
 
     mvc.perform(get(RANDOM_SENTENCE_URL))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentence", hasLength(200)))
-        .andExpect(jsonPath("$.symbols", hasToString("200")));
+        .andExpect(jsonPath("$.sentence", hasLength(sentenceDefaultLength)))
+        .andExpect(jsonPath("$.symbols", hasToString(sentenceDefaultLength.toString())));
   }
 
   @Test
@@ -44,8 +63,8 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
     mvc.perform(get(RANDOM_SENTENCE_URL + "?count=-2000"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentence", hasLength(200)))
-        .andExpect(jsonPath("$.symbols", hasToString("200")));
+        .andExpect(jsonPath("$.sentence", hasLength(sentenceDefaultLength)))
+        .andExpect(jsonPath("$.symbols", hasToString(sentenceDefaultLength.toString())));
   }
 
   @Test
@@ -85,7 +104,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.TEXT_PLAIN))
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
-        .andExpect(content().string(hasLength(200)));
+        .andExpect(content().string(hasLength(sentenceDefaultLength)));
 
   }
 
@@ -106,9 +125,9 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentences", hasSize(2)))
-        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
-        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+        .andExpect(jsonPath("$.sentences", hasSize(sentencesDefaultCount)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(sentenceDefaultLength)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString(sentenceDefaultLength.toString())));
   }
 
   @Test
@@ -118,9 +137,9 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentences", hasSize(2)))
-        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
-        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+        .andExpect(jsonPath("$.sentences", hasSize(sentencesDefaultCount)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(sentenceDefaultLength)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString(sentenceDefaultLength.toString())));
   }
 
   @Test
@@ -130,9 +149,9 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentences", hasSize(10)))
-        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
-        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+        .andExpect(jsonPath("$.sentences", hasSize(maxSentencesCount)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(sentenceDefaultLength)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString(sentenceDefaultLength.toString())));
   }
 
   @Test
@@ -142,7 +161,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentences", hasSize(2)))
+        .andExpect(jsonPath("$.sentences", hasSize(sentencesDefaultCount)))
         .andExpect(jsonPath("$.sentences[0].sentence", hasLength(5000)))
         .andExpect(jsonPath("$.sentences[0].symbols", hasToString("5000")));
   }
@@ -155,8 +174,8 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.sentences", hasSize(1)))
-        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
-        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(sentenceDefaultLength)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString(sentenceDefaultLength.toString())));
   }
 
   @Test
@@ -166,9 +185,9 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.sentences", hasSize(2)))
-        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
-        .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
+        .andExpect(jsonPath("$.sentences", hasSize(sentencesDefaultCount)))
+        .andExpect(jsonPath("$.sentences[0].sentence", hasLength(sentenceDefaultLength)))
+        .andExpect(jsonPath("$.sentences[0].symbols", hasToString(sentenceDefaultLength.toString())));
   }
 
   @Test
@@ -177,11 +196,11 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
     mvc.perform(get(CURRENT_LIMITS_PATH).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.default_sentence_length", hasToString("200")))
-        .andExpect(jsonPath("$.default_sentences_count", hasToString("2")))
-        .andExpect(jsonPath("$.max_sentence_length", hasToString("70000")))
-        .andExpect(jsonPath("$.max_sentences_count", hasToString("10")))
-        .andExpect(jsonPath("$.max_word_length", hasToString("15")))
-        .andExpect(jsonPath("$.min_word_length", hasToString("2")));
+        .andExpect(jsonPath("$.default_sentence_length", hasToString(sentenceDefaultLength.toString())))
+        .andExpect(jsonPath("$.default_sentences_count", hasToString(sentencesDefaultCount.toString())))
+        .andExpect(jsonPath("$.max_sentence_length", hasToString(maxSentenceLength.toString())))
+        .andExpect(jsonPath("$.max_sentences_count", hasToString(maxSentencesCount.toString())))
+        .andExpect(jsonPath("$.max_word_length", hasToString(maxWordLength.toString())))
+        .andExpect(jsonPath("$.min_word_length", hasToString(minWordLength.toString())));
   }
 }
