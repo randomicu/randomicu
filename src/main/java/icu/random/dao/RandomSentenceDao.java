@@ -1,5 +1,6 @@
 package icu.random.dao;
 
+import icu.random.model.Limits;
 import icu.random.model.Sentence;
 import java.util.List;
 import java.util.Map;
@@ -15,4 +16,6 @@ public interface RandomSentenceDao {
   void enableParagraphs(boolean isParagraphsEnabled);
 
   Map<String, List<Sentence>> getRandomSentences();
+
+  Limits getCurrentLimits();
 }

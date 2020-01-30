@@ -1,8 +1,10 @@
 package icu.random.controller.api;
 
 import static icu.random.api.ApiControllerPaths.API_ROOT_PATH;
+import static icu.random.api.ApiControllerPaths.CURRENT_LIMITS_PATH;
 import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCES_GENERATOR_PATH;
 import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCE_GENERATOR_PATH;
+import icu.random.model.Limits;
 import icu.random.model.Sentence;
 import icu.random.service.RandomSentenceService;
 import java.util.List;
@@ -46,5 +48,11 @@ public class RandomSentenceController {
                                                                   @RequestParam(defaultValue = "true") boolean enableParagraphs) {
 
     return randomSentenceService.getRandomSentences(count, sentencesCount, enableParagraphs);
+  }
+
+  @GetMapping(value = CURRENT_LIMITS_PATH)
+  public Limits generatorCurrentLimits() {
+
+    return randomSentenceService.getCurrentLimits();
   }
 }
