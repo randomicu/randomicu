@@ -82,10 +82,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
         .limit(this.sentences.getSentencesCount())
         .collect(Collectors.toList());
 
-    Map<String, List<Sentence>> sentencesMap = new HashMap<>();
-    sentencesMap.put("sentences", sentenceList);
-
-    return sentencesMap;
+    return Map.of("sentences", sentenceList);
   }
 
   @Override
