@@ -1,6 +1,7 @@
 package icu.random.controller.api;
 
 import static icu.random.api.ApiControllerPaths.API_ROOT_PATH;
+import static icu.random.api.ApiControllerPaths.API_VERSION;
 import static icu.random.api.ApiControllerPaths.CURRENT_LIMITS_PATH;
 import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCES_GENERATOR_PATH;
 import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCE_GENERATOR_PATH;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(API_ROOT_PATH)
+@RequestMapping(API_ROOT_PATH + API_VERSION)
 public class RandomSentenceController {
 
   private final RandomSentenceService randomSentenceService;
