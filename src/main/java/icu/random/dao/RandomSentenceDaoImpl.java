@@ -1,5 +1,9 @@
 package icu.random.dao;
 
+import icu.random.model.Limits;
+import icu.random.model.Sentence;
+import icu.random.model.Sentences;
+import icu.random.util.RandomSentenceGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,9 +13,6 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import icu.random.model.Sentence;
-import icu.random.model.Sentences;
-import icu.random.util.RandomSentenceGenerator;
 
 @Component
 public class RandomSentenceDaoImpl implements RandomSentenceDao {
@@ -19,6 +20,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   private final RandomSentenceGenerator sentenceGenerator;
   private final Sentence sentence;
   private final Sentences sentences;
+  private final Limits limits;
 
   @Value("${randomicu.sentence.default-length}")
   private Integer defaultSentenceLength;
@@ -32,12 +34,18 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   @Value("${randomicu.sentence.max-sentences-count}")
   private Integer maxSentencesCount;
 
+  @Value("${randomicu.sentence.max-word-length}")
+  private Integer maxWordLength;
+
+  @Value("${randomicu.sentence.min-word-length}")
+  private Integer minWordLength;
 
   @Autowired
   public RandomSentenceDaoImpl(RandomSentenceGenerator sentenceGenerator) {
     this.sentenceGenerator = sentenceGenerator;
     this.sentence = new Sentence();
     this.sentences = new Sentences();
+    this.limits = new Limits();
   }
 
   @Override
@@ -83,6 +91,18 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   @Override
   public void enableParagraphs(boolean isParagraphsEnabled) {
     sentenceGenerator.setParagraphsEnabled(isParagraphsEnabled);
+  }
+
+  @Override
+  public Limits getCurrentLimits() {
+    this.limits.setDefaultSentenceLength(defaultSentenceLength);
+    this.limits.setDefaultSentencesCount(defaultSentencesCount);
+    this.limits.setMaxSentenceLength(maxSentenceLength);
+    this.limits.setMaxSentencesCount(maxSentencesCount);
+    this.limits.setMaxWordLength(maxWordLength);
+    this.limits.setMinWordLength(minWordLength);
+
+    return this.limits;
   }
 
   private boolean checkIfSymbolsCountValid(Integer symbolsCount) {
