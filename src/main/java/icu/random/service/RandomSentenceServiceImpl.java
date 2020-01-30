@@ -1,6 +1,7 @@
 package icu.random.service;
 
 import icu.random.dao.RandomSentenceDao;
+import icu.random.model.Limits;
 import icu.random.model.Sentence;
 import java.util.List;
 import java.util.Map;
@@ -32,5 +33,10 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
     randomSentenceDao.enableParagraphs(isParagraphsEnabled);
 
     return randomSentenceDao.getRandomSentences();
+  }
+
+  @Override
+  public Limits getCurrentLimits() {
+    return randomSentenceDao.getCurrentLimits();
   }
 }
