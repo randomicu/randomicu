@@ -170,4 +170,18 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .andExpect(jsonPath("$.sentences[0].sentence", hasLength(200)))
         .andExpect(jsonPath("$.sentences[0].symbols", hasToString("200")));
   }
+
+  @Test
+  void limitsTest() throws Exception {
+
+    mvc.perform(get(CURRENT_LIMITS_PATH).accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.default_sentence_length", hasToString("200")))
+        .andExpect(jsonPath("$.default_sentences_count", hasToString("2")))
+        .andExpect(jsonPath("$.max_sentence_length", hasToString("70000")))
+        .andExpect(jsonPath("$.max_sentences_count", hasToString("10")))
+        .andExpect(jsonPath("$.max_word_length", hasToString("15")))
+        .andExpect(jsonPath("$.min_word_length", hasToString("2")));
+  }
 }

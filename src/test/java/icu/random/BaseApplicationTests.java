@@ -9,5 +9,6 @@ abstract public class BaseApplicationTests {
 
   public static String RANDOM_SENTENCE_URL = "/api/generators/random-sentence";
   public static final String RANDOM_SENTENCES_URL = "/api/generators/random-sentences";
+  public static final String CURRENT_LIMITS_PATH = "/api/generators/limits";
 
 }
