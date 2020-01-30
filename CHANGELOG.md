@@ -1,4 +1,30 @@
 ## Randomicu Changelog
+## [0.1.0](https://github.com/pythoninja/randomicu/compare/0.0.6...0.1.0) (2020-01-30)
+
+
+### Features
+
+* **api:** add API version ([a4e386b](https://github.com/pythoninja/randomicu/commit/a4e386b122501830acf3e3fae1e97ef8bf130f2a)), closes [#48](https://github.com/pythoninja/randomicu/issues/48)
+* **api:** add new limits endpoint ([b3ec98d](https://github.com/pythoninja/randomicu/commit/b3ec98d403cc1bcff4a2e8718b8556e199aae41e))
+
+
+### Other
+
+* **changelog:** refactor titled as Refactoring ([71e4773](https://github.com/pythoninja/randomicu/commit/71e4773d5bb2f957b06b5b2c6f90d993f2306ebe))
+
+
+### Tests
+
+* add tests to /limits endpoint ([324d47b](https://github.com/pythoninja/randomicu/commit/324d47b1796e5c85a74f025ba0b760960b837355))
+* less magic numbers, more configurable vars ([33d503a](https://github.com/pythoninja/randomicu/commit/33d503ad8250ad447a8274af4bee8e44a77ae179))
+* RANDOM_SENTENCES_URL is final now ([9a6efc2](https://github.com/pythoninja/randomicu/commit/9a6efc2c2cb2e00cbd482c28698ba8e3b15d76f9))
+* reduce console output to INFO level ([ab8bfcd](https://github.com/pythoninja/randomicu/commit/ab8bfcd969a61910ea1b84ca2271b68ac76d8cb7))
+
+
+### Refactoring
+
+* remove unused HashMap import ([7215689](https://github.com/pythoninja/randomicu/commit/721568976f7c698c629d412d64d8f928c34d7121))
+
 ### [0.0.6](https://github.com/pythoninja/randomicu/compare/0.0.5...0.0.6) (2020-01-30)
 
 
