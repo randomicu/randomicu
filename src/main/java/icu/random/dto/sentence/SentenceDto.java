@@ -1,4 +1,4 @@
-package icu.random.model;
+package icu.random.dto.sentence;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Sentence {
+public class SentenceDto {
 
   private String sentence;
 

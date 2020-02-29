@@ -1,4 +1,4 @@
-package icu.random.model;
+package icu.random.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Limits {
+public class LimitsDto {
 
   @JsonProperty(value = "default_sentence_length")
   private Integer defaultSentenceLength;

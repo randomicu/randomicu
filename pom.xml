@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>pw.stas.projects</groupId>
+    <groupId>icu.random</groupId>
     <artifactId>randomicu</artifactId>
     <version>0.0.0</version>
     <name>randomicu</name>
@@ -38,6 +38,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.6.00</version>
         </dependency>
 
         <dependency>

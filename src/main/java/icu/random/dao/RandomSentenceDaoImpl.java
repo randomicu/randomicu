@@ -1,8 +1,8 @@
 package icu.random.dao;
 
-import icu.random.model.Limits;
-import icu.random.model.Sentence;
-import icu.random.model.Sentences;
+import icu.random.dto.LimitsDto;
+import icu.random.dto.sentence.SentenceDto;
+import icu.random.dto.sentence.SentencesDto;
 import icu.random.util.RandomSentenceGenerator;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +17,9 @@ import org.springframework.stereotype.Component;
 public class RandomSentenceDaoImpl implements RandomSentenceDao {
 
   private final RandomSentenceGenerator sentenceGenerator;
-  private final Sentence sentence;
-  private final Sentences sentences;
-  private final Limits limits;
+  private final SentenceDto sentence;
+  private final SentencesDto sentences;
+  private final LimitsDto limits;
 
   @Value("${randomicu.sentence.default-length}")
   private Integer defaultSentenceLength;
@@ -42,13 +42,13 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   @Autowired
   public RandomSentenceDaoImpl(RandomSentenceGenerator sentenceGenerator) {
     this.sentenceGenerator = sentenceGenerator;
-    this.sentence = new Sentence();
-    this.sentences = new Sentences();
-    this.limits = new Limits();
+    this.sentence = new SentenceDto();
+    this.sentences = new SentencesDto();
+    this.limits = new LimitsDto();
   }
 
   @Override
-  public Sentence getRandomSentence() {
+  public SentenceDto getRandomSentence() {
     sentence.setSentence(sentenceGenerator.generate());
 
     return sentence;
@@ -70,10 +70,10 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   }
 
   @Override
-  public Map<String, List<Sentence>> getRandomSentences() {
-    List<Sentence> sentenceList = Stream.generate(
+  public Map<String, List<SentenceDto>> getRandomSentences() {
+    List<SentenceDto> sentenceList = Stream.generate(
         () -> {
-          var tempSentence = new Sentence();
+          var tempSentence = new SentenceDto();
           tempSentence.setSymbolsCount(this.sentenceGenerator.getSymbolsCount());
           tempSentence.setSentence(this.sentenceGenerator.generate());
           return tempSentence;
@@ -90,7 +90,7 @@ public class RandomSentenceDaoImpl implements RandomSentenceDao {
   }
 
   @Override
-  public Limits getCurrentLimits() {
+  public LimitsDto getCurrentLimits() {
     this.limits.setDefaultSentenceLength(defaultSentenceLength);
     this.limits.setDefaultSentencesCount(defaultSentencesCount);
     this.limits.setMaxSentenceLength(maxSentenceLength);
