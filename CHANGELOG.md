@@ -1,4 +1,20 @@
 ## Randomicu Changelog
+## [0.2.0](https://github.com/pythoninja/randomicu/compare/0.1.0...0.2.0) (2020-02-29)
+
+
+### Features
+
+* **lipsum:** add lipsum.com client ([1c3cbb0](https://github.com/pythoninja/randomicu/commit/1c3cbb0ed9f34409566790c6b9548fde7deb1fe2))
+
+
+### Other
+
+* **cleanup:** remove mvnw ([5207a77](https://github.com/pythoninja/randomicu/commit/5207a775de89ec1ab529298fce64dfcac54c0b1f))
+* **deps:** add unirest-java 3.6.00 ([d6fa019](https://github.com/pythoninja/randomicu/commit/d6fa01994be69eda4898a966d09b64ccf74adf14))
+* **deps:** bump jib-maven-plugin from 2.0.0 to 2.1.0 ([f5c581d](https://github.com/pythoninja/randomicu/commit/f5c581d86c435e0ad36c1721d812cf9089085bcc))
+* **deps:** bump spring-boot-starter-parent ([09d489e](https://github.com/pythoninja/randomicu/commit/09d489e40e43267bf1b31de3d6d087a29597b052))
+* **deps:** update node to 12.16.1 ([663f38b](https://github.com/pythoninja/randomicu/commit/663f38b3ce4cc5dfef02030882a11b3fff1a7f49))
+
 ## [0.1.0](https://github.com/pythoninja/randomicu/compare/0.0.6...0.1.0) (2020-01-30)
 
 
