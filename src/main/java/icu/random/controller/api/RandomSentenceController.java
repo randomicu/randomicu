@@ -5,8 +5,8 @@ import static icu.random.api.ApiControllerPaths.API_VERSION;
 import static icu.random.api.ApiControllerPaths.CURRENT_LIMITS_PATH;
 import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCES_GENERATOR_PATH;
 import static icu.random.api.ApiControllerPaths.RANDOM_SENTENCE_GENERATOR_PATH;
-import icu.random.model.Limits;
-import icu.random.model.Sentence;
+import icu.random.dto.LimitsDto;
+import icu.random.dto.sentence.SentenceDto;
 import icu.random.service.RandomSentenceService;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +29,8 @@ public class RandomSentenceController {
   }
 
   @GetMapping(value = RANDOM_SENTENCE_GENERATOR_PATH)
-  public Sentence randomSentenceJsonGenerator(@RequestParam(required = false) Integer count,
-                                              @RequestParam(defaultValue = "true") boolean enableParagraphs) {
+  public SentenceDto randomSentenceJsonGenerator(@RequestParam(required = false) Integer count,
+                                                 @RequestParam(defaultValue = "true") boolean enableParagraphs) {
 
     return randomSentenceService.getRandomSentence(count, enableParagraphs);
   }
@@ -44,15 +44,15 @@ public class RandomSentenceController {
   }
 
   @GetMapping(value = RANDOM_SENTENCES_GENERATOR_PATH)
-  public Map<String, List<Sentence>> randomSentencesJsonGenerator(@RequestParam(required = false) Integer count,
-                                                                  @RequestParam(required = false) Integer sentencesCount,
-                                                                  @RequestParam(defaultValue = "true") boolean enableParagraphs) {
+  public Map<String, List<SentenceDto>> randomSentencesJsonGenerator(@RequestParam(required = false) Integer count,
+                                                                     @RequestParam(required = false) Integer sentencesCount,
+                                                                     @RequestParam(defaultValue = "true") boolean enableParagraphs) {
 
     return randomSentenceService.getRandomSentences(count, sentencesCount, enableParagraphs);
   }
 
   @GetMapping(value = CURRENT_LIMITS_PATH)
-  public Limits generatorCurrentLimits() {
+  public LimitsDto generatorCurrentLimits() {
 
     return randomSentenceService.getCurrentLimits();
   }

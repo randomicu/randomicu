@@ -1,15 +1,15 @@
 package icu.random.service;
 
-import icu.random.model.Limits;
-import icu.random.model.Sentence;
+import icu.random.dto.LimitsDto;
+import icu.random.dto.sentence.SentenceDto;
 import java.util.List;
 import java.util.Map;
 
 public interface RandomSentenceService {
 
-  Sentence getRandomSentence(Integer symbolsCount, boolean isParagraphEnabled);
+  SentenceDto getRandomSentence(Integer symbolsCount, boolean isParagraphEnabled);
 
-  Map<String, List<Sentence>> getRandomSentences(Integer count, Integer sentencesCount, boolean isParagraphsEnabled);
+  Map<String, List<SentenceDto>> getRandomSentences(Integer count, Integer sentencesCount, boolean isParagraphsEnabled);
 
-  Limits getCurrentLimits();
+  LimitsDto getCurrentLimits();
 }

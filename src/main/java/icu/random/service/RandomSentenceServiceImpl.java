@@ -1,8 +1,8 @@
 package icu.random.service;
 
 import icu.random.dao.RandomSentenceDao;
-import icu.random.model.Limits;
-import icu.random.model.Sentence;
+import icu.random.dto.LimitsDto;
+import icu.random.dto.sentence.SentenceDto;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   }
 
   @Override
-  public Sentence getRandomSentence(Integer symbolsCount, boolean isParagraphsEnabled) {
+  public SentenceDto getRandomSentence(Integer symbolsCount, boolean isParagraphsEnabled) {
     randomSentenceDao.setSymbolsCount(symbolsCount);
     randomSentenceDao.enableParagraphs(isParagraphsEnabled);
 
@@ -27,7 +27,7 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   }
 
   @Override
-  public Map<String, List<Sentence>> getRandomSentences(Integer symbolsCount, Integer sentencesCount, boolean isParagraphsEnabled) {
+  public Map<String, List<SentenceDto>> getRandomSentences(Integer symbolsCount, Integer sentencesCount, boolean isParagraphsEnabled) {
     randomSentenceDao.setSymbolsCount(symbolsCount);
     randomSentenceDao.setSentencesCount(sentencesCount);
     randomSentenceDao.enableParagraphs(isParagraphsEnabled);
@@ -36,7 +36,7 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   }
 
   @Override
-  public Limits getCurrentLimits() {
+  public LimitsDto getCurrentLimits() {
     return randomSentenceDao.getCurrentLimits();
   }
 }

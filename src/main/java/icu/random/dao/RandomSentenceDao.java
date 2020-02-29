@@ -1,13 +1,13 @@
 package icu.random.dao;
 
-import icu.random.model.Limits;
-import icu.random.model.Sentence;
+import icu.random.dto.LimitsDto;
+import icu.random.dto.sentence.SentenceDto;
 import java.util.List;
 import java.util.Map;
 
 public interface RandomSentenceDao {
 
-  Sentence getRandomSentence();
+  SentenceDto getRandomSentence();
   
   void setSymbolsCount(Integer symbolsCount);
   
@@ -15,7 +15,7 @@ public interface RandomSentenceDao {
 
   void enableParagraphs(boolean isParagraphsEnabled);
 
-  Map<String, List<Sentence>> getRandomSentences();
+  Map<String, List<SentenceDto>> getRandomSentences();
 
-  Limits getCurrentLimits();
+  LimitsDto getCurrentLimits();
 }
