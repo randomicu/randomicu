@@ -1,6 +1,5 @@
 package icu.random.service;
 
-import icu.random.dto.LimitsDto;
 import icu.random.dto.sentence.SentenceDto;
 import icu.random.dto.sentence.SentencesDto;
 import icu.random.util.RandomSentenceGenerator;
@@ -20,7 +19,6 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   private final RandomSentenceGenerator sentenceGenerator;
   private final SentenceDto sentence;
   private final SentencesDto sentences;
-  private final LimitsDto limits;
 
   @Value("${randomicu.sentence.default-length}")
   private Integer defaultSentenceLength;
@@ -33,12 +31,6 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
 
   @Value("${randomicu.sentence.max-sentences-count}")
   private Integer maxSentencesCount;
-
-  @Value("${randomicu.sentence.max-word-length}")
-  private Integer maxWordLength;
-
-  @Value("${randomicu.sentence.min-word-length}")
-  private Integer minWordLength;
   // </editor-fold>
 
   @Autowired
@@ -46,7 +38,6 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
     this.sentenceGenerator = sentenceGenerator;
     this.sentence = new SentenceDto();
     this.sentences = new SentencesDto();
-    this.limits = new LimitsDto();
   }
 
   @Override
@@ -64,18 +55,6 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
     this.enableParagraphs(isParagraphsEnabled);
 
     return getRandomSentences();
-  }
-
-  @Override
-  public LimitsDto getCurrentLimits() {
-    this.limits.setDefaultSentenceLength(defaultSentenceLength);
-    this.limits.setDefaultSentencesCount(defaultSentencesCount);
-    this.limits.setMaxSentenceLength(maxSentenceLength);
-    this.limits.setMaxSentencesCount(maxSentencesCount);
-    this.limits.setMaxWordLength(maxWordLength);
-    this.limits.setMinWordLength(minWordLength);
-
-    return this.limits;
   }
 
   private SentenceDto getRandomSentence() {
