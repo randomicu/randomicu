@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 class RandomSentenceGeneratorTest {
 
   private RandomSentenceGenerator generator;
-  private int minWordLenght = 2;
-  private int maxWordLenght = 15;
 
   @BeforeEach
   void setUp() {
+    int minWordLenght = 2;
+    int maxWordLenght = 15;
     generator = new RandomSentenceGenerator();
     generator.setMinWordLength(minWordLenght);
     generator.setMaxWordLength(maxWordLenght);
