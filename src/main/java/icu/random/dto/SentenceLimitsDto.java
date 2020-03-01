@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class LimitsDto {
+public class SentenceLimitsDto {
 
   @JsonProperty(value = "default_sentence_length")
   private Integer defaultSentenceLength;
