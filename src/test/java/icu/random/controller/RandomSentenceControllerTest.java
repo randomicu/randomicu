@@ -1,5 +1,6 @@
 package icu.random.controller;
 
+import icu.random.BaseApplicationTests;
 import static org.hamcrest.Matchers.hasLength;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.hasToString;
@@ -12,7 +13,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import icu.random.BaseApplicationTests;
 
 public class RandomSentenceControllerTest extends BaseApplicationTests {
 
@@ -188,19 +188,5 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .andExpect(jsonPath("$.sentences", hasSize(sentencesDefaultCount)))
         .andExpect(jsonPath("$.sentences[0].sentence", hasLength(sentenceDefaultLength)))
         .andExpect(jsonPath("$.sentences[0].symbols", hasToString(sentenceDefaultLength.toString())));
-  }
-
-  @Test
-  void limitsTest() throws Exception {
-
-    mvc.perform(get(CURRENT_LIMITS_PATH).accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.default_sentence_length", hasToString(sentenceDefaultLength.toString())))
-        .andExpect(jsonPath("$.default_sentences_count", hasToString(sentencesDefaultCount.toString())))
-        .andExpect(jsonPath("$.max_sentence_length", hasToString(maxSentenceLength.toString())))
-        .andExpect(jsonPath("$.max_sentences_count", hasToString(maxSentencesCount.toString())))
-        .andExpect(jsonPath("$.max_word_length", hasToString(maxWordLength.toString())))
-        .andExpect(jsonPath("$.min_word_length", hasToString(minWordLength.toString())));
   }
 }

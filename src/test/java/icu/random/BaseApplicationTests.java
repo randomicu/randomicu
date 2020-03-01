@@ -12,6 +12,7 @@ abstract public class BaseApplicationTests {
 
   public static final String RANDOM_SENTENCE_URL = "/api/v1/generators/random-sentence";
   public static final String RANDOM_SENTENCES_URL = "/api/v1/generators/random-sentences";
-  public static final String CURRENT_LIMITS_PATH = "/api/v1/generators/limits";
+  public static final String SENTENCE_LIMITS_PATH = "/api/v1/generators/sentence-limits";
+  public static final String LIPSUM_LIMITS_PATH = "/api/v1/generators/lipsum-limits";
 
 }
