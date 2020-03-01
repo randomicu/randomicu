@@ -10,7 +10,7 @@ public interface RestClient {
 
   /**
    * Send HTTP GET request to Lipsum.com API
-   *
+   * @param path full url where make request (https://www.example.com)
    * @return {@link GetRequest} object
    */
   GetRequest get(String path);
