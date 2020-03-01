@@ -1,4 +1,17 @@
 ## Randomicu Changelog
+## [0.3.0](https://github.com/pythoninja/randomicu/compare/0.2.0...0.3.0) (2020-03-01)
+
+
+### Features
+
+* **lipsum:** add lipsum.com limits endpoint ([472f439](https://github.com/pythoninja/randomicu/commit/472f439dc973804c55f191726da54a74681f8e3f))
+
+
+### Refactoring
+
+* move limits endpoint to own controller ([8a0a6a3](https://github.com/pythoninja/randomicu/commit/8a0a6a31f6f0b5a9c84247d954eacef4646b835c))
+* remove DAO layer ([e32c563](https://github.com/pythoninja/randomicu/commit/e32c563767e8b2f5e55cee8fedb881b2853307d2))
+
 ## [0.2.0](https://github.com/pythoninja/randomicu/compare/0.1.0...0.2.0) (2020-02-29)
 
 
