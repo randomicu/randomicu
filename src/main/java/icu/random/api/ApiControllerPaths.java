@@ -5,7 +5,8 @@ public class ApiControllerPaths {
   public static final String API_VERSION = "/v1";
   public static final String RANDOM_SENTENCE_GENERATOR_PATH = "/generators/random-sentence";
   public static final String RANDOM_SENTENCES_GENERATOR_PATH = "/generators/random-sentences";
-  public static final String CURRENT_LIMITS_PATH = "/generators/limits";
+  public static final String SENTENCE_LIMITS_PATH = "/generators/sentence-limits";
+  public static final String LIPSUM_LIMITS_PATH = "/generators/lipsum-limits";
 
   public static final String LOREM_AS_BYTES_PATH = "/external/generators/lorem-bytes";
   public static final String LOREM_AS_WORDS_PATH = "/external/generators/lorem-words";
