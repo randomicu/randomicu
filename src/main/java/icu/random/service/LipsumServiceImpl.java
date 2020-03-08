@@ -2,7 +2,6 @@ package icu.random.service;
 
 import icu.random.client.lipsum.LipsumClient;
 import icu.random.dto.lipsum.LipsumDto;
-import icu.random.service.LipsumService;
 import kong.unirest.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
