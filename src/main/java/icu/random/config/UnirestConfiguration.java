@@ -11,11 +11,13 @@ import org.springframework.http.MediaType;
 public class UnirestConfiguration {
 
   private static final int CONNECT_TIMEOUT_MS = 1000;
+  private static final int SOCKET_TIMEOUT_MS = 2000;
 
   @PostConstruct
   public void postConstruct() {
     Unirest.config()
         .connectTimeout(CONNECT_TIMEOUT_MS)
+        .socketTimeout(SOCKET_TIMEOUT_MS)
         .followRedirects(false)
         .enableCookieManagement(false)
         .setDefaultHeader(HeaderNames.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
