@@ -5,11 +5,11 @@ import kong.unirest.HttpResponse;
 
 public interface LipsumService {
 
-  HttpResponse<LipsumDto> getBytes(Integer amount);
+  HttpResponse<LipsumDto> getBytes(Integer amount, boolean startWithLorem);
 
-  HttpResponse<LipsumDto> getParagraphs(Integer amount);
+  HttpResponse<LipsumDto> getParagraphs(Integer amount, boolean startWithLorem);
 
-  HttpResponse<LipsumDto> getWords(Integer amount);
+  HttpResponse<LipsumDto> getWords(Integer amount, boolean startWithLorem);
 
-  HttpResponse<LipsumDto> getLists(Integer amount);
+  HttpResponse<LipsumDto> getLists(Integer amount, boolean startWithLorem);
 }

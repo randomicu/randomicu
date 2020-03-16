@@ -19,37 +19,37 @@ public class LipsumClientImpl implements LipsumClient {
   }
 
   @Override
-  public HttpResponse<LipsumDto> getBytes(int amount, String startWithLorem) {
+  public HttpResponse<LipsumDto> getBytes(int amount, boolean startWithLorem) {
     Map<String, Object> params = Map.of("lipsumType", "bytes",
         "amount", amount,
-        "startWithLorem", startWithLorem);
+        "startWithLorem", startWithLorem ? "yes" : "no");
 
     return this.getResponse(params);
   }
 
   @Override
-  public HttpResponse<LipsumDto> getParagraphs(int amount, String startWithLorem) {
+  public HttpResponse<LipsumDto> getParagraphs(int amount, boolean startWithLorem) {
     Map<String, Object> params = Map.of("lipsumType", "paras",
         "amount", amount,
-        "startWithLorem", startWithLorem);
+        "startWithLorem", startWithLorem ? "yes" : "no");
 
     return this.getResponse(params);
   }
 
   @Override
-  public HttpResponse<LipsumDto> getWords(int amount, String startWithLorem) {
+  public HttpResponse<LipsumDto> getWords(int amount, boolean startWithLorem) {
     Map<String, Object> params = Map.of("lipsumType", "words",
         "amount", amount,
-        "startWithLorem", startWithLorem);
+        "startWithLorem", startWithLorem ? "yes" : "no");
 
     return this.getResponse(params);
   }
 
   @Override
-  public HttpResponse<LipsumDto> getLists(int amount, String startWithLorem) {
+  public HttpResponse<LipsumDto> getLists(int amount, boolean startWithLorem) {
     Map<String, Object> params = Map.of("lipsumType", "lists",
         "amount", amount,
-        "startWithLorem", startWithLorem);
+        "startWithLorem", startWithLorem ? "yes" : "no");
 
     return this.getResponse(params);
   }
