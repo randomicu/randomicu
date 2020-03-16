@@ -30,30 +30,30 @@ public class LipsumServiceImpl implements LipsumService {
   }
 
   @Override
-  public HttpResponse<LipsumDto> getBytes(Integer amount) {
+  public HttpResponse<LipsumDto> getBytes(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumBytesCount : amount;
 
-    return client.getBytes(count, "yes");
+    return client.getBytes(count, startWithLorem);
   }
 
   @Override
-  public HttpResponse<LipsumDto> getParagraphs(Integer amount) {
+  public HttpResponse<LipsumDto> getParagraphs(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumParagraphsCount : amount;
 
-    return client.getParagraphs(count, "yes");
+    return client.getParagraphs(count, startWithLorem);
   }
 
   @Override
-  public HttpResponse<LipsumDto> getWords(Integer amount) {
+  public HttpResponse<LipsumDto> getWords(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumWordsCount : amount;
 
-    return client.getWords(count,"yes");
+    return client.getWords(count, startWithLorem);
   }
 
   @Override
-  public HttpResponse<LipsumDto> getLists(Integer amount) {
+  public HttpResponse<LipsumDto> getLists(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumListsCount : amount;
 
-    return client.getLists(count, "yes");
+    return client.getLists(count, startWithLorem);
   }
 }
