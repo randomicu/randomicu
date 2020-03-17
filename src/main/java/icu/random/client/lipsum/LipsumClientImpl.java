@@ -6,12 +6,16 @@ import icu.random.dto.lipsum.LipsumDto;
 import java.util.Map;
 import kong.unirest.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LipsumClientImpl implements LipsumClient {
 
   private final RestClient client;
+
+  @Value("${randomicu.external.lipsum.remote-url}")
+  private String lipsumRemoteUrl;
 
   @Autowired
   public LipsumClientImpl(RestClientImpl client) {
@@ -55,7 +59,8 @@ public class LipsumClientImpl implements LipsumClient {
   }
 
   private HttpResponse<LipsumDto> getResponse(Map<String, Object> params) {
-    return client.get("https://lipsum.com/feed/json?what={lipsumType}&amount={amount}&start={startWithLorem}")
+//    return client.get("https://lipsum.com/feed/json?what={lipsumType}&amount={amount}&start={startWithLorem}")
+    return client.get(lipsumRemoteUrl)
         .routeParam(params)
         .asObject(LipsumDto.class);
   }
