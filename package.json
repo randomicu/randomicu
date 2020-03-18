@@ -1,6 +1,6 @@
 {
   "name": "randomicu",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Frontend part for random.icu - Free API for QA Engineers",
   "dependencies": {
     "purecss": "^1.0.1"

@@ -1,4 +1,32 @@
 ## Randomicu Changelog
+### [0.3.1](https://github.com/pythoninja/randomicu/compare/0.3.0...0.3.1) (2020-03-18)
+
+
+### Features
+
+* **lipsum:** add socket timeout 2000ms ([5aaf9ed](https://github.com/pythoninja/randomicu/commit/5aaf9edf1522b2f41af66da554c5760bb453612e))
+* **lipsum:** add startWithLorem parameter ([331fdbc](https://github.com/pythoninja/randomicu/commit/331fdbc39aa68fbbb2b64bc65cce9a9448de2101))
+
+
+### Other
+
+* **cleanup:** remove comment ([65bd245](https://github.com/pythoninja/randomicu/commit/65bd245c68d2f8a3cf84e1495632263fdbd0853a))
+* **deps:** bump acorn from 5.7.3 to 5.7.4 ([04e61bf](https://github.com/pythoninja/randomicu/commit/04e61bfadcc19499da717fcd5841d7e57181dd8a))
+* **deps:** bump unirest-java from 3.6.00 to 3.6.01 ([6b932d9](https://github.com/pythoninja/randomicu/commit/6b932d95726ce423ec5004d94ce892b3744f2fbe))
+* **deps:** npm audit ([c319236](https://github.com/pythoninja/randomicu/commit/c3192360a25a28fb7c578b488bbd8963d2f91567))
+
+
+### Refactoring
+
+* **exceptions:** handle MethodArgumentTypeMismatch ([a9dee71](https://github.com/pythoninja/randomicu/commit/a9dee71deac016e1e5ad75f0b49bf50c44fc230e))
+* **lipsum:** move remote url to variable ([9642d4a](https://github.com/pythoninja/randomicu/commit/9642d4a11c4d990ad24c2be3f060f702c522817a))
+
+
+### Tests
+
+* add lipsum variable to properties ([924e4df](https://github.com/pythoninja/randomicu/commit/924e4dfcb26357ca69329c81f396ff0181abe765))
+* change assertable message ([1ba037f](https://github.com/pythoninja/randomicu/commit/1ba037f5d25df23ffb4195ee85d1162cd57510a2))
+
 ## [0.3.0](https://github.com/pythoninja/randomicu/compare/0.2.0...0.3.0) (2020-03-01)
 
 
