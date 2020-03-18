@@ -59,7 +59,6 @@ public class LipsumClientImpl implements LipsumClient {
   }
 
   private HttpResponse<LipsumDto> getResponse(Map<String, Object> params) {
-//    return client.get("https://lipsum.com/feed/json?what={lipsumType}&amount={amount}&start={startWithLorem}")
     return client.get(lipsumRemoteUrl)
         .routeParam(params)
         .asObject(LipsumDto.class);
