@@ -74,7 +74,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().is4xxClientError())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.exception", hasToString("Argument should be a number")));
+        .andExpect(jsonPath("$.exception", hasToString("The parameter 'count' of value 'abc' could not be converted to type 'Integer'")));
   }
 
   @Test
@@ -84,7 +84,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().is4xxClientError())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.exception", hasToString("Argument should be a number")));
+        .andExpect(jsonPath("$.exception", hasToString("The parameter 'count' of value 'abc500' could not be converted to type 'Integer'")));
   }
 
   @Test
@@ -94,7 +94,7 @@ public class RandomSentenceControllerTest extends BaseApplicationTests {
         .accept(MediaType.TEXT_PLAIN))
         .andExpect(status().is4xxClientError())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
-        .andExpect(content().string("Argument should be a number"));
+        .andExpect(content().string("The parameter 'count' of value 'abc500' could not be converted to type 'Integer'"));
   }
 
   @Test
