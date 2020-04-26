@@ -36,9 +36,15 @@ public class LipsumController {
 
   @GetMapping(LOREM_AS_PARAGRAPHS_PATH)
   public SentenceDto paragraphsGenerator(@RequestParam(required = false) Integer count,
-                                         @RequestParam(required = false, defaultValue = "true") Boolean startWithLorem) {
-    var lipsumDto = lipsumService.getParagraphs(count, startWithLorem).getBody();
+                                         @RequestParam(required = false, defaultValue = "true") Boolean startWithLorem,
+                                         @RequestParam(required = false, defaultValue = "true") Boolean additionalBreak) {
+    LipsumDto lipsumDto;
 
+    if (additionalBreak) {
+      lipsumDto = lipsumService.getParagraphsWithBreak(count, startWithLorem, true);
+    } else {
+      lipsumDto = lipsumService.getParagraphs(count, startWithLorem).getBody();
+    }
     return LipsumDto.convertToSentence(lipsumDto);
   }
 
