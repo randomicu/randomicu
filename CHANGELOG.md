@@ -1,4 +1,21 @@
 ## Randomicu Changelog
+### [0.3.2](https://github.com/pythoninja/randomicu/compare/0.3.1...0.3.2) (2020-04-26)
+
+
+### Features
+
+* **lipsum:** add additionalBreak parameter ([adf34d2](https://github.com/pythoninja/randomicu/commit/adf34d2734f9ffb65dc6ea9d367da1d8b64c860c)), closes [#80](https://github.com/pythoninja/randomicu/issues/80)
+
+
+### Other
+
+* **deps:** bump commons-lang3 from 3.9 to 3.10 ([5949330](https://github.com/pythoninja/randomicu/commit/59493302ec0a0b71c3525c1e77b52b23a26c0fcf))
+* **deps:** bump jib-maven-plugin from 2.1.0 to 2.2.0 ([0131bfc](https://github.com/pythoninja/randomicu/commit/0131bfce9a577f4b59e8bf912bfa3303ef2e47a4))
+* **deps:** bump spring-boot-starter-parent ([084fb97](https://github.com/pythoninja/randomicu/commit/084fb977b03af537bb8b7ba9b99c03a21831ee9f))
+* **deps:** bump unirest-java from 3.6.01 to 3.7.00 ([45a5d93](https://github.com/pythoninja/randomicu/commit/45a5d930e164ab5a8ccb720e5f3f4ef4eefc4282))
+* **deps:** bump unirest-java from 3.7.00 to 3.7.01 ([c7d936d](https://github.com/pythoninja/randomicu/commit/c7d936d349f356641b8aefc57228571429d37de3))
+* **deps:** bump unirest-java from 3.7.01 to 3.7.02 ([c60c568](https://github.com/pythoninja/randomicu/commit/c60c568b24fcba16e5018c481cedff23732dd25a))
+
 ### [0.3.1](https://github.com/pythoninja/randomicu/compare/0.3.0...0.3.1) (2020-03-18)
 
 
