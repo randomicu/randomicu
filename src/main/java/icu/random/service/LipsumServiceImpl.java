@@ -44,6 +44,14 @@ public class LipsumServiceImpl implements LipsumService {
   }
 
   @Override
+  public LipsumDto getParagraphsWithBreak(Integer amount, boolean startWithLorem, boolean additionalBreak) {
+    var count = amount == null ? defaultLipsumParagraphsCount : amount;
+    var paragraphs = client.getParagraphs(count, startWithLorem);
+
+    return insertAdditionalBreakTo(paragraphs);
+  }
+
+  @Override
   public HttpResponse<LipsumDto> getWords(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumWordsCount : amount;
 
@@ -56,4 +64,14 @@ public class LipsumServiceImpl implements LipsumService {
 
     return client.getLists(count, startWithLorem);
   }
+
+  private LipsumDto insertAdditionalBreakTo(HttpResponse<LipsumDto> response) {
+    var lipsumDto = response.getBody();
+    String originalLipsum = lipsumDto.getFeed().getLipsum();
+    String replacedLipsum = originalLipsum.replace("\n", "\n\n");
+    lipsumDto.getFeed().setLipsum(replacedLipsum);
+
+    return lipsumDto;
+  }
+
 }

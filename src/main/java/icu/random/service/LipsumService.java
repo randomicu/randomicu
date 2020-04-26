@@ -9,6 +9,8 @@ public interface LipsumService {
 
   HttpResponse<LipsumDto> getParagraphs(Integer amount, boolean startWithLorem);
 
+  LipsumDto getParagraphsWithBreak(Integer amount, boolean startWithLorem, boolean additionalBreak);
+
   HttpResponse<LipsumDto> getWords(Integer amount, boolean startWithLorem);
 
   HttpResponse<LipsumDto> getLists(Integer amount, boolean startWithLorem);
