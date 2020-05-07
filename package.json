@@ -3,7 +3,7 @@
   "version": "0.3.2",
   "description": "Frontend part for random.icu - Free API for QA Engineers",
   "dependencies": {
-    "purecss": "^1.0.1"
+    "purecss": "^2.0.1"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
