@@ -126,7 +126,7 @@
             <plugin>
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
-                <version>4.0.0</version>
+                <version>4.0.1</version>
                 <executions>
                     <execution>
                         <id>get-the-git-infos</id>
@@ -160,7 +160,7 @@
                             <name>Validate semver tag</name>
                             <value>${version.number}</value>
                             <shouldMatchTo>
-                                <![CDATA[^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$]]></shouldMatchTo>
+                                <![CDATA[^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$]]></shouldMatchTo>
                         </validationProperty>
                     </validationProperties>
                 </configuration>
