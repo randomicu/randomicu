@@ -1,4 +1,25 @@
 ## Randomicu Changelog
+### [0.3.3](https://github.com/pythoninja/randomicu/compare/0.3.2...0.3.3) (2020-08-04)
+
+
+### Other
+
+* **deps:** audit npm packages ([967eade](https://github.com/pythoninja/randomicu/commit/967eadec7f7a604480e4e46af3b2f98ee1e9ec71))
+* **deps:** audit npm packages ([1c32b1e](https://github.com/pythoninja/randomicu/commit/1c32b1e1c69ecca9c92dbe34e716c25c3d88b126))
+* **deps:** audit npm packages ([824fdef](https://github.com/pythoninja/randomicu/commit/824fdef817281c571a6899359db45d4b61bc7bf8))
+* **deps:** bump commons-lang3 from 3.10 to 3.11 ([8d5a906](https://github.com/pythoninja/randomicu/commit/8d5a906e896591eded8d1c8aa558c2ec27eda7d5))
+* **deps:** bump elliptic from 6.5.2 to 6.5.3 ([429f759](https://github.com/pythoninja/randomicu/commit/429f759647c632013fa3dcd48cd05ad174e01f03))
+* **deps:** bump git-commit-id-plugin from 4.0.0 to 4.0.1 ([c5b0573](https://github.com/pythoninja/randomicu/commit/c5b057369591cf1fb025f12c3a9e3c83e106fb8b))
+* **deps:** bump jib-maven-plugin from 2.2.0 to 2.4.0 ([5704587](https://github.com/pythoninja/randomicu/commit/57045879102a0795108af4f8d30197daaff03d5d))
+* **deps:** bump lodash from 4.17.15 to 4.17.19 ([f5c9798](https://github.com/pythoninja/randomicu/commit/f5c9798cab8ab811b6da71b302f896d1e1c13580))
+* **deps:** bump spring-boot-starter-parent ([39eb418](https://github.com/pythoninja/randomicu/commit/39eb418160aa325e513947a2de25977cd6b18392))
+* **deps:** bump spring-boot-starter-parent ([4d30038](https://github.com/pythoninja/randomicu/commit/4d3003859751efb3f9c93c80939ead4ff21d6176))
+* **deps:** bump spring-boot-starter-parent ([e6e1f08](https://github.com/pythoninja/randomicu/commit/e6e1f08d0891e345f538ecd28fc0fd91d170a1a9))
+* **deps:** bump unirest-java from 3.7.02 to 3.7.04 ([3fd84e6](https://github.com/pythoninja/randomicu/commit/3fd84e667834360a7f5fc4392612a983f8781a71))
+* **deps:** bump unirest-java from 3.7.04 to 3.8.06 ([a6a401e](https://github.com/pythoninja/randomicu/commit/a6a401e8845737b03d0b16d88fb3752f1eed27a1))
+* **deps:** bump unirest-java from 3.8.06 to 3.9.00 ([3d6480d](https://github.com/pythoninja/randomicu/commit/3d6480df90d88227c853eba095f6c00731e206b4))
+* **deps:** up purecss to 2.0.3 ([999ba14](https://github.com/pythoninja/randomicu/commit/999ba14d6f4ae0ec82669e1558a2eec0c6e816cc))
+
 ### [0.3.2](https://github.com/pythoninja/randomicu/compare/0.3.1...0.3.2) (2020-04-26)
 
 
