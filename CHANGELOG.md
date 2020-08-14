@@ -1,4 +1,14 @@
 ## Randomicu Changelog
+### [0.3.4](https://github.com/pythoninja/randomicu/compare/0.3.3...0.3.4) (2020-08-14)
+
+
+### Other
+
+* **deps:** bump git-commit-id-plugin from 4.0.1 to 4.0.2 ([2524e69](https://github.com/pythoninja/randomicu/commit/2524e69000cc150595da1d0d920fc9004d11080d))
+* **deps:** bump jib-maven-plugin from 2.4.0 to 2.5.1 ([9257c22](https://github.com/pythoninja/randomicu/commit/9257c2299291d4f363fe2f4dc63e58b9dfa1a24c))
+* **deps:** bump jib-maven-plugin from 2.5.1 to 2.5.2 ([cd50192](https://github.com/pythoninja/randomicu/commit/cd5019242dfc38eaf5d7b23bc21550c164b5aeaa))
+* **deps:** bump spring-boot-starter-parent ([93335d8](https://github.com/pythoninja/randomicu/commit/93335d8be0b2a67981b3bc2b9786868d9e6c2685))
+
 ### [0.3.3](https://github.com/pythoninja/randomicu/compare/0.3.2...0.3.3) (2020-08-04)
 
 
