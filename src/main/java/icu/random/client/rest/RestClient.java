@@ -3,7 +3,7 @@ package icu.random.client.rest;
 import kong.unirest.GetRequest;
 
 /**
- * Rest client for Lipsum.com API
+ * Rest client for remote API
  *
  */
 public interface RestClient {

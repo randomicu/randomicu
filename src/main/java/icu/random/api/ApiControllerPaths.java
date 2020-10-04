@@ -12,4 +12,7 @@ public class ApiControllerPaths {
   public static final String LOREM_AS_WORDS_PATH = "/external/generators/lorem-words";
   public static final String LOREM_AS_PARAGRAPHS_PATH = "/external/generators/lorem-paragraphs";
   public static final String LOREM_AS_LISTS_PATH = "/external/generators/lorem-lists";
+
+  public static final String FAKEDATA_ADDRESS = "/fakedata/{language}/address";
+  public static final String FAKEDATA_PERSON = "/fakedata/{language}/person";
 }

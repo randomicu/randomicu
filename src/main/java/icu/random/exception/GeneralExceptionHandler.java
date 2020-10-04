@@ -55,4 +55,15 @@ public class GeneralExceptionHandler {
     );
     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler(IncorrectLanguageException.class)
+  public ResponseEntity<?> handleIncorrectLanguageException(IncorrectLanguageException exc) {
+
+    GeneralException response = new GeneralException(
+        HttpStatus.BAD_REQUEST.value(),
+        exc.getLocalizedMessage(),
+        System.currentTimeMillis()
+    );
+    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+  }
 }
