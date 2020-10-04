@@ -50,7 +50,7 @@ blocks:
           commands:
             - mvn --batch-mode --file pom.xml test
 promotions:
-  - name: Build production image
+  - name: Build production image 
     pipeline_file: production-deploy.yml
     auto_promote:
       when: "result = 'passed' and tag =~ '.*'"
