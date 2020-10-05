@@ -1,4 +1,23 @@
 ## Randomicu Changelog
+## [0.4.0-stage.0](https://github.com/pythoninja/randomicu/compare/0.3.4...0.4.0-stage.0) (2020-10-05)
+
+
+### Features
+
+* **fakedata:** add first client for fakedata backend ([89ec032](https://github.com/pythoninja/randomicu/commit/89ec032dd21f0491beece26ecbb6c6928fc86c5b))
+
+
+### Tests
+
+* add fakedata related configuration to test properties ([91aa501](https://github.com/pythoninja/randomicu/commit/91aa5016d857abae4ba984fd18a30acf9779488c))
+
+
+### Other
+
+* **deps:** bump spring-boot-starter-parent ([71c6446](https://github.com/pythoninja/randomicu/commit/71c6446b1c564ad6ea7234d95060a6b20bd8170f))
+* **deps:** bump unirest-java from 3.10.00 to 3.11.00 ([8731dd0](https://github.com/pythoninja/randomicu/commit/8731dd07e07908cc3d8d6b48380cf8ebeddbdd88))
+* **deps:** bump unirest-java from 3.9.00 to 3.10.00 ([732b733](https://github.com/pythoninja/randomicu/commit/732b733e8b5cbb25a207c68535c710bbcc79ab16))
+
 ### [0.3.4](https://github.com/pythoninja/randomicu/compare/0.3.3...0.3.4) (2020-08-14)
 
 
