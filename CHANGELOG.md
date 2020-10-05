@@ -1,4 +1,11 @@
 ## Randomicu Changelog
+## [0.4.0-stage.2](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.1...0.4.0-stage.2) (2020-10-05)
+
+
+### Bug Fixes
+
+* **config:** remove port from fakedata backend ([82509ab](https://github.com/pythoninja/randomicu/commit/82509ab4632b8de531e4de9c87ca8a1941a800f1))
+
 ## [0.4.0-stage.1](https://github.com/pythoninja/randomicu/compare/0.3.4...0.4.0-stage.1) (2020-10-05)
 
 
