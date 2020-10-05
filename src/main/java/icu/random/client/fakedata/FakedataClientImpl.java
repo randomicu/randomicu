@@ -32,7 +32,7 @@ public class FakedataClientImpl implements FakedataClient {
 
   @Override
   public HttpResponse<AddressDto> getAdress(String language) {
-    String url = String.format(fakedataUrl, language, personEndpoint);
+    String url = String.format(fakedataUrl, language, addressEndpoint);
 
     return client.get(url).asObject(AddressDto.class);
   }
