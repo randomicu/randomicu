@@ -1,4 +1,11 @@
 ## Randomicu Changelog
+## [0.4.0-stage.3](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.2...0.4.0-stage.3) (2020-10-05)
+
+
+### Bug Fixes
+
+* return correct DTO for fakedata /address endpoint ([412e200](https://github.com/pythoninja/randomicu/commit/412e20074bda3476d00bf20aff1bef36d393154f))
+
 ## [0.4.0-stage.2](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.1...0.4.0-stage.2) (2020-10-05)
 
 
