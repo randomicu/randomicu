@@ -1,4 +1,17 @@
 ## Randomicu Changelog
+## [0.4.0-stage.4](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.3...0.4.0-stage.4) (2020-10-15)
+
+
+### Bug Fixes
+
+* fixed fakedata backend url ([15f0633](https://github.com/pythoninja/randomicu/commit/15f0633bf3ddb69d9d31b04ba7e49fdcd690569f))
+
+
+### Other
+
+* **deps:** bump unirest-java from 3.11.00 to 3.11.01 ([55f8ea3](https://github.com/pythoninja/randomicu/commit/55f8ea3d94a03113624dd76834c15837e598bfcf))
+* **dev:** up node version in .nvmrc for development ([9ce55c5](https://github.com/pythoninja/randomicu/commit/9ce55c54a0180f9b106aa9c79fb2bcab4c0fd915))
+
 ## [0.4.0-stage.3](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.2...0.4.0-stage.3) (2020-10-05)
 
 
