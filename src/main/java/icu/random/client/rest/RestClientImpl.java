@@ -2,6 +2,7 @@ package icu.random.client.rest;
 
 import kong.unirest.GetRequest;
 import kong.unirest.Unirest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**

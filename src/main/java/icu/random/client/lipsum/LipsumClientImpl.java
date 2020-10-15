@@ -5,10 +5,12 @@ import icu.random.client.rest.RestClientImpl;
 import icu.random.dto.lipsum.LipsumDto;
 import java.util.Map;
 import kong.unirest.HttpResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class LipsumClientImpl implements LipsumClient {
 
@@ -28,6 +30,7 @@ public class LipsumClientImpl implements LipsumClient {
         "amount", amount,
         "startWithLorem", startWithLorem ? "yes" : "no");
 
+    log.info("Params for request: {}", params);
     return this.getResponse(params);
   }
 
@@ -59,8 +62,15 @@ public class LipsumClientImpl implements LipsumClient {
   }
 
   private HttpResponse<LipsumDto> getResponse(Map<String, Object> params) {
-    return client.get(lipsumRemoteUrl)
-        .routeParam(params)
-        .asObject(LipsumDto.class);
+    var request = client.get(lipsumRemoteUrl)
+        .routeParam(params);
+
+    log.info("!!!!!!!!!!!!: {}", request.getUrl());
+
+    var response = request.asObject(LipsumDto.class);
+
+    log.info("##############: {}", response.getStatus());
+
+    return response;
   }
 }
