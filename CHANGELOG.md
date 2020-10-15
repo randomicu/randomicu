@@ -1,4 +1,6 @@
 ## Randomicu Changelog
+## [0.4.0](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.4...0.4.0) (2020-10-15)
+
 ## [0.4.0-stage.4](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.3...0.4.0-stage.4) (2020-10-15)
 
 
