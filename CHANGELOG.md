@@ -1,4 +1,19 @@
 ## Randomicu Changelog
+## [0.5.0](https://github.com/pythoninja/randomicu/compare/0.4.0...0.5.0) (2020-10-23)
+
+
+### Features
+
+* add logback-spring configuration ([7e7aead](https://github.com/pythoninja/randomicu/commit/7e7aead0eb32792eb35c5ff2d696bad0623157ac)), closes [#127](https://github.com/pythoninja/randomicu/issues/127)
+* add logging points. ([1ec6826](https://github.com/pythoninja/randomicu/commit/1ec68262e62632e1b08f69cc1a2ea6f5eb3b5bea)), closes [#138](https://github.com/pythoninja/randomicu/issues/138)
+* **fakedata:** extend DTOs for address and person endpoints ([3079f8f](https://github.com/pythoninja/randomicu/commit/3079f8f51dcc7946f6150f65714301953b9faef1)), closes [#132](https://github.com/pythoninja/randomicu/issues/132) [#134](https://github.com/pythoninja/randomicu/issues/134)
+
+
+### Other
+
+* **deps:** bump jib-maven-plugin from 2.5.2 to 2.6.0 ([4edf645](https://github.com/pythoninja/randomicu/commit/4edf64594972c0d15006e4e6f0ac27c21cc03a63))
+* **deps:** bump unirest-java from 3.11.01 to 3.11.02 ([d447b05](https://github.com/pythoninja/randomicu/commit/d447b05599f9a75b57e78b0612e115577adbcaae))
+
 ## [0.4.0](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.4...0.4.0) (2020-10-15)
 
 ## [0.4.0-stage.4](https://github.com/pythoninja/randomicu/compare/0.4.0-stage.3...0.4.0-stage.4) (2020-10-15)
