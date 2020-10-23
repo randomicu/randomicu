@@ -9,6 +9,7 @@ import kong.unirest.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -36,7 +37,7 @@ public class FakedataClientImpl implements FakedataClient {
   public HttpResponse<AddressDto> getAdress(String language) {
     return this.getResponse(
         Map.of("locale", language,
-            "endpoint", addressEndpoint),
+            "endpoint", "addressEndpoint"),
         AddressDto.class
     );
   }
@@ -51,19 +52,29 @@ public class FakedataClientImpl implements FakedataClient {
   }
 
   private <T> HttpResponse<T> getResponse(Map<String, Object> params, Class<T> clazz) {
-    var request = httpClient.get(fakedataUrl)
-        .routeParam(params);
-    String url = request.getUrl();
+    var request = httpClient.get(fakedataUrl).routeParam(params);
+
+    var url = request.getUrl();
     log.info("Prepare request to url: {}", url);
 
     return request.asObject(clazz)
-        .ifSuccess(r -> {
-          log.info("Response finished successfully. Status code: {}", r.getStatus());
-        })
+        .ifSuccess(r -> log.info("Response finished successfully. Status code: {}", r.getStatus()))
         .ifFailure(r -> {
-          log.error("Request finished with error. Status code: {}", r.getStatus());
+          var status = r.getStatus();
+          log.error("Request finished with error. Status code: {}", status);
+
+          r.getParsingError().ifPresent(e -> {
+            log.error("Parsing Exception: {}", e.toString());
+            log.error("Original Body: {}", e.getOriginalBody());
+          });
+
+          if (status == HttpStatus.NOT_FOUND.value()) {
+            throw new HttpClientFailureException(String.format("Status code from Fakedata backend: %d. " +
+                "Possible invalid url: %s", status, url), HttpStatus.NOT_FOUND);
+          }
+
           throw new HttpClientFailureException(String.format("Status code from Fakedata backend: %d. " +
-              "Possible invalid url: %s", r.getStatus(), url));
+              "Possible invalid url: %s", status, url), HttpStatus.BAD_REQUEST);
         });
   }
 }
