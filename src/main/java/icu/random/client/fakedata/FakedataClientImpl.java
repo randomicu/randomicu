@@ -5,13 +5,13 @@ import icu.random.dto.fakedata.AddressDto;
 import icu.random.dto.fakedata.PersonDto;
 import icu.random.exception.HttpClientFailureException;
 import java.util.Map;
-import kong.unirest.GetRequest;
 import kong.unirest.HttpResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-
+@Slf4j
 @Component
 public class FakedataClientImpl implements FakedataClient {
 
@@ -34,38 +34,36 @@ public class FakedataClientImpl implements FakedataClient {
 
   @Override
   public HttpResponse<AddressDto> getAdress(String language) {
-    var request = this.getRequest(
+    return this.getResponse(
         Map.of("locale", language,
-            "endpoint", addressEndpoint)
+            "endpoint", addressEndpoint),
+        AddressDto.class
     );
-
-    String url = request.getUrl();
-
-    return httpClient.get(url).asObject(AddressDto.class)
-        .ifFailure(r -> {
-          throw new HttpClientFailureException(String.format("Status code from Fakedata backend: %d. " +
-              "Possible invalid url: %s", r.getStatus(), url));
-        });
   }
 
   @Override
   public HttpResponse<PersonDto> getPerson(String language) {
-    var request = this.getRequest(
+    return this.getResponse(
         Map.of("locale", language,
-            "endpoint", personEndpoint)
+            "endpoint", personEndpoint),
+        PersonDto.class
     );
+  }
 
+  private <T> HttpResponse<T> getResponse(Map<String, Object> params, Class<T> clazz) {
+    var request = httpClient.get(fakedataUrl)
+        .routeParam(params);
     String url = request.getUrl();
+    log.info("Prepare request to url: {}", url);
 
-    return request.asObject(PersonDto.class)
+    return request.asObject(clazz)
+        .ifSuccess(r -> {
+          log.info("Response finished successfully. Status code: {}", r.getStatus());
+        })
         .ifFailure(r -> {
+          log.error("Request finished with error. Status code: {}", r.getStatus());
           throw new HttpClientFailureException(String.format("Status code from Fakedata backend: %d. " +
               "Possible invalid url: %s", r.getStatus(), url));
         });
-  }
-
-  private GetRequest getRequest(Map<String, Object> params) {
-    return httpClient.get(fakedataUrl)
-        .routeParam(params);
   }
 }

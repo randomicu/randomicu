@@ -14,14 +14,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class LipsumClientImpl implements LipsumClient {
 
-  private final RestClient client;
+  private final RestClient restClient;
 
   @Value("${randomicu.external.lipsum.remote-url}")
   private String lipsumRemoteUrl;
 
   @Autowired
-  public LipsumClientImpl(RestClientImpl client) {
-    this.client = client;
+  public LipsumClientImpl(RestClientImpl restClient) {
+    this.restClient = restClient;
   }
 
   @Override
@@ -30,7 +30,7 @@ public class LipsumClientImpl implements LipsumClient {
         "amount", amount,
         "startWithLorem", startWithLorem ? "yes" : "no");
 
-    log.info("Params for request: {}", params);
+    log.info("Params for request (getBytes): {}", params);
     return this.getResponse(params);
   }
 
@@ -40,6 +40,7 @@ public class LipsumClientImpl implements LipsumClient {
         "amount", amount,
         "startWithLorem", startWithLorem ? "yes" : "no");
 
+    log.info("Params for request (getParagraphs): {}", params);
     return this.getResponse(params);
   }
 
@@ -49,6 +50,7 @@ public class LipsumClientImpl implements LipsumClient {
         "amount", amount,
         "startWithLorem", startWithLorem ? "yes" : "no");
 
+    log.info("Params for request (getWords): {}", params);
     return this.getResponse(params);
   }
 
@@ -58,19 +60,22 @@ public class LipsumClientImpl implements LipsumClient {
         "amount", amount,
         "startWithLorem", startWithLorem ? "yes" : "no");
 
+    log.info("Params for request (getLists): {}", params);
     return this.getResponse(params);
   }
 
   private HttpResponse<LipsumDto> getResponse(Map<String, Object> params) {
-    var request = client.get(lipsumRemoteUrl)
+    var request = restClient.get(lipsumRemoteUrl)
         .routeParam(params);
 
-    log.info("!!!!!!!!!!!!: {}", request.getUrl());
+    log.info("Prepare request to url: {}", request.getUrl());
 
-    var response = request.asObject(LipsumDto.class);
-
-    log.info("##############: {}", response.getStatus());
-
-    return response;
+    return request.asObject(LipsumDto.class)
+        .ifSuccess(r -> {
+          log.info("Response finished successfully. Status code: {}", r.getStatus());
+        })
+        .ifFailure(r -> {
+          log.error("Request finished with error. Status code: {}", r.getStatus());
+        });
   }
 }
