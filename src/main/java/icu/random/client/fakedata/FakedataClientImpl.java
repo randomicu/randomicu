@@ -37,7 +37,7 @@ public class FakedataClientImpl implements FakedataClient {
   public HttpResponse<AddressDto> getAdress(String language) {
     return this.getResponse(
         Map.of("locale", language,
-            "endpoint", "addressEndpoint"),
+            "endpoint", addressEndpoint),
         AddressDto.class
     );
   }
