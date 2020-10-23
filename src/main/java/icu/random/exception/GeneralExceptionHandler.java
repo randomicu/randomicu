@@ -68,14 +68,16 @@ public class GeneralExceptionHandler {
   }
 
   @ExceptionHandler(HttpClientFailureException.class)
-  public ResponseEntity<?> handleTestFailureException(HttpClientFailureException exc) {
+  public ResponseEntity<?> handleHttpClientFailureException(HttpClientFailureException exc) {
+
+    HttpStatus status = exc.getStatus();
 
     GeneralException response = new GeneralException(
-        HttpStatus.BAD_REQUEST.value(),
+        status.value(),
         exc.getLocalizedMessage(),
         System.currentTimeMillis()
     );
-    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-  }
 
+    return new ResponseEntity<>(response, status);
+  }
 }
