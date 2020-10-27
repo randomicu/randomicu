@@ -2,6 +2,9 @@ package icu.random.service;
 
 import icu.random.dto.lipsum.LipsumLimitsDto;
 import icu.random.dto.sentence.SentenceLimitsDto;
+import icu.random.util.event.EventSender;
+import icu.random.util.event.EventType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +13,7 @@ public class LimitsServiceImpl implements LimitsService {
 
   private final SentenceLimitsDto sentenceLimits;
   private final LipsumLimitsDto lipsumLimits;
+  private final EventSender eventSender;
 
   @Value("${randomicu.sentence.default-length}")
   private Integer defaultSentenceLength;
@@ -41,13 +45,16 @@ public class LimitsServiceImpl implements LimitsService {
   @Value("${randomicu.external.lipsum.default-lists-count}")
   private Integer defaultListsCount;
 
-  public LimitsServiceImpl() {
+  @Autowired
+  public LimitsServiceImpl(EventSender eventSender) {
+    this.eventSender = eventSender;
     this.sentenceLimits = new SentenceLimitsDto();
     this.lipsumLimits = new LipsumLimitsDto();
   }
 
   @Override
   public SentenceLimitsDto getSentenceLimits() {
+
     this.sentenceLimits.setDefaultSentenceLength(defaultSentenceLength);
     this.sentenceLimits.setDefaultSentencesCount(defaultSentencesCount);
     this.sentenceLimits.setMaxSentenceLength(maxSentenceLength);
@@ -55,15 +62,20 @@ public class LimitsServiceImpl implements LimitsService {
     this.sentenceLimits.setMaxWordLength(maxWordLength);
     this.sentenceLimits.setMinWordLength(minWordLength);
 
+    eventSender.send(EventType.sentence_limits);
+
     return this.sentenceLimits;
   }
 
   @Override
   public LipsumLimitsDto getLipsumLimits() {
+
     this.lipsumLimits.setDefaultBytesCount(defaultBytesCount);
     this.lipsumLimits.setDefaultParagraphsCount(defaultParagraphsCount);
     this.lipsumLimits.setDefaultWordsCount(defaultWordsCount);
     this.lipsumLimits.setDefaultListsCount(defaultListsCount);
+
+    eventSender.send(EventType.lorem_limits);
 
     return this.lipsumLimits;
   }
