@@ -2,6 +2,8 @@ package icu.random.service;
 
 import icu.random.client.lipsum.LipsumClient;
 import icu.random.dto.lipsum.LipsumDto;
+import icu.random.util.event.EventSender;
+import icu.random.util.event.EventType;
 import kong.unirest.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class LipsumServiceImpl implements LipsumService {
 
   private final LipsumClient client;
+  private final EventSender eventSender;
 
   @Value("${randomicu.external.lipsum.default-bytes-count:300}")
   private Integer defaultLipsumBytesCount;
@@ -25,13 +28,16 @@ public class LipsumServiceImpl implements LipsumService {
   private Integer defaultLipsumListsCount;
 
   @Autowired
-  public LipsumServiceImpl(LipsumClient client) {
+  public LipsumServiceImpl(LipsumClient client, EventSender eventSender) {
     this.client = client;
+    this.eventSender = eventSender;
   }
 
   @Override
   public HttpResponse<LipsumDto> getBytes(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumBytesCount : amount;
+
+    eventSender.send(EventType.lorem_bytes);
 
     return client.getBytes(count, startWithLorem);
   }
@@ -39,6 +45,8 @@ public class LipsumServiceImpl implements LipsumService {
   @Override
   public HttpResponse<LipsumDto> getParagraphs(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumParagraphsCount : amount;
+
+    eventSender.send(EventType.lorem_paragraphs);
 
     return client.getParagraphs(count, startWithLorem);
   }
@@ -48,6 +56,8 @@ public class LipsumServiceImpl implements LipsumService {
     var count = amount == null ? defaultLipsumParagraphsCount : amount;
     var paragraphs = client.getParagraphs(count, startWithLorem);
 
+    eventSender.send(EventType.lorem_paragraphs_break);
+
     return insertAdditionalBreakTo(paragraphs);
   }
 
@@ -55,12 +65,16 @@ public class LipsumServiceImpl implements LipsumService {
   public HttpResponse<LipsumDto> getWords(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumWordsCount : amount;
 
+    eventSender.send(EventType.lorem_words);
+
     return client.getWords(count, startWithLorem);
   }
 
   @Override
   public HttpResponse<LipsumDto> getLists(Integer amount, boolean startWithLorem) {
     var count = amount == null ? defaultLipsumListsCount : amount;
+
+    eventSender.send(EventType.lorem_lists);
 
     return client.getLists(count, startWithLorem);
   }

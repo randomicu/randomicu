@@ -43,12 +43,13 @@ blocks:
       prologue:
         commands:
           - sem-version java 11
+          - sem-service start postgresql 13 --username=postgres --password=password --db=fakedata_test
           - checkout
           - cache restore
       jobs:
         - name: Unit test
           commands:
-            - mvn --batch-mode --file pom.xml test
+            - mvn --batch-mode --file pom.xml -Dspring.profiles.active=test,ci test
 promotions:
   - name: Build production image 
     pipeline_file: production-deploy.yml

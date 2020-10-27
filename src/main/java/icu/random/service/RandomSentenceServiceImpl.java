@@ -3,6 +3,8 @@ package icu.random.service;
 import icu.random.dto.sentence.SentenceDto;
 import icu.random.dto.sentence.SentencesDto;
 import icu.random.util.RandomSentenceGenerator;
+import icu.random.util.event.EventSender;
+import icu.random.util.event.EventType;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -19,6 +21,7 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   private final RandomSentenceGenerator sentenceGenerator;
   private final SentenceDto sentence;
   private final SentencesDto sentences;
+  private final EventSender eventSender;
 
   @Value("${randomicu.sentence.default-length}")
   private Integer defaultSentenceLength;
@@ -34,8 +37,9 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
   // </editor-fold>
 
   @Autowired
-  public RandomSentenceServiceImpl(RandomSentenceGenerator sentenceGenerator) {
+  public RandomSentenceServiceImpl(RandomSentenceGenerator sentenceGenerator, EventSender eventSender) {
     this.sentenceGenerator = sentenceGenerator;
+    this.eventSender = eventSender;
     this.sentence = new SentenceDto();
     this.sentences = new SentencesDto();
   }
@@ -45,6 +49,8 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
     this.setSymbolsCount(symbolsCount);
     this.enableParagraphs(isParagraphEnabled);
 
+    eventSender.send(EventType.random_sentence);
+
     return this.getRandomSentence();
   }
 
@@ -53,6 +59,8 @@ public class RandomSentenceServiceImpl implements RandomSentenceService {
     this.setSentencesCount(sentencesCount);
     this.setSymbolsCount(count);
     this.enableParagraphs(isParagraphsEnabled);
+
+    eventSender.send(EventType.random_sentences);
 
     return getRandomSentences();
   }
