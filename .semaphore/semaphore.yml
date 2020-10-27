@@ -43,7 +43,7 @@ blocks:
       prologue:
         commands:
           - sem-version java 11
-          - sem-service start postgresql 13 --username=postgres --password=password --db=fakedata_test
+          - sem-service start postgres 13 --username=postgres --password=password --db=fakedata_test
           - checkout
           - cache restore
       jobs:
