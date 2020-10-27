@@ -1,4 +1,33 @@
 ## Randomicu Changelog
+## [0.6.0](https://github.com/pythoninja/randomicu/compare/0.5.0...0.6.0) (2020-10-27)
+
+
+### Features
+
+* **core:** add events processing and saving to database ([131373c](https://github.com/pythoninja/randomicu/commit/131373c0a4a85afb5d389443a5b7bf950b21ea78))
+* add CORS headers to /api endpoints ([84c60ff](https://github.com/pythoninja/randomicu/commit/84c60ff7cd5984b5be340c661a01ea5254bfd339))
+
+
+### Bug Fixes
+
+* addressEndpoint should be variable not string ([0eeea3e](https://github.com/pythoninja/randomicu/commit/0eeea3e607833b61082b3ca3c0cd5174a959f8f7))
+
+
+### Other
+
+* **logs:** change log level to error for production ([a0fee32](https://github.com/pythoninja/randomicu/commit/a0fee3237f19671d16139c034f5a9a054854108b))
+
+
+### CI / CD
+
+* postgresql should be postgres on semaphore ([dcf3c5d](https://github.com/pythoninja/randomicu/commit/dcf3c5de8c704dced21a128b720abde355082c5f))
+
+
+### Refactoring
+
+* not found in fakedata mapped to 404 ([58c8076](https://github.com/pythoninja/randomicu/commit/58c8076ba86f5b9ac056c89b6a2fca33036fb9e3)), closes [#136](https://github.com/pythoninja/randomicu/issues/136)
+* rename lipsum-limits to lorem-limits ([90395be](https://github.com/pythoninja/randomicu/commit/90395be9f0fcdab7a70b0e2595934b0456ae4a7b))
+
 ## [0.5.0](https://github.com/pythoninja/randomicu/compare/0.4.0...0.5.0) (2020-10-23)
 
 
