@@ -64,7 +64,7 @@ public class LimitsContollerTest extends BaseApplicationTests {
   @Test
   void lipsumLimitsTest() throws Exception {
 
-    mvc.perform(get(LIPSUM_LIMITS_PATH).accept(MediaType.APPLICATION_JSON))
+    mvc.perform(get(LOREM_LIMITS_PATH).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
         .andExpect(jsonPath("$.default_bytes_count", hasToString(defaultBytesCount.toString())))

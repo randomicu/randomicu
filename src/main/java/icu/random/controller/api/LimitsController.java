@@ -2,7 +2,7 @@ package icu.random.controller.api;
 
 import static icu.random.api.ApiControllerPaths.API_ROOT_PATH;
 import static icu.random.api.ApiControllerPaths.API_VERSION;
-import static icu.random.api.ApiControllerPaths.LIPSUM_LIMITS_PATH;
+import static icu.random.api.ApiControllerPaths.LOREM_LIMITS_PATH;
 import static icu.random.api.ApiControllerPaths.SENTENCE_LIMITS_PATH;
 import icu.random.dto.lipsum.LipsumLimitsDto;
 import icu.random.dto.sentence.SentenceLimitsDto;
@@ -29,7 +29,7 @@ public class LimitsController {
     return sentenceLimitsService.getSentenceLimits();
   }
 
-  @GetMapping(value = LIPSUM_LIMITS_PATH)
+  @GetMapping(value = LOREM_LIMITS_PATH)
   public LipsumLimitsDto lipsumLimits() {
 
     return sentenceLimitsService.getLipsumLimits();
