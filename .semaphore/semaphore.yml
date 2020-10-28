@@ -27,11 +27,12 @@ blocks:
             - cache store
         - name: Login to Docker Hub
           commands:
+            - cache delete docker-credential
             - >-
               echo "$DOCKER_HUB_TOKEN" | docker login --username
               $DOCKER_HUB_USERNAME --password-stdin
             - >-
-              echo "GCR_TOKEN" | docker login --username
+              echo "$GCR_TOKEN" | docker login ghcr.io --username
               $GITHUB_USERNAME --password-stdin
             - cache store docker-credential /home/semaphore/.docker/config.json
       secrets:
@@ -52,6 +53,7 @@ blocks:
           - sem-service start postgres 13 --username=postgres --password=password --db=fakedata_test
           - checkout
           - cache restore
+          - cache restore docker-credential
       jobs:
         - name: Unit test
           commands:
