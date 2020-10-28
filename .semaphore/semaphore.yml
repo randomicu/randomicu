@@ -30,9 +30,13 @@ blocks:
             - >-
               echo "$DOCKER_HUB_TOKEN" | docker login --username
               $DOCKER_HUB_USERNAME --password-stdin
+            - >-
+              echo "GCR_TOKEN" | docker login --username
+              $GITHUB_USERNAME --password-stdin
             - cache store docker-credential /home/semaphore/.docker/config.json
       secrets:
         - name: Docker Hub Token
+        - name: Github Container Registry
   - name: Run tests
     dependencies:
       - Install dependencies
@@ -40,6 +44,8 @@ blocks:
       env_vars:
         - name: MAVEN_OPTS
           value: '-Dmaven.repo.local=.m2'
+        - name: FAKEDATA_DATABASE_URL
+          value: 'postgresql://postgres:postgres@localhost:5432/fakedata_test'
       prologue:
         commands:
           - sem-version java 11
@@ -49,6 +55,7 @@ blocks:
       jobs:
         - name: Unit test
           commands:
+            - docker run --network host --rm --env "FAKEDATA_DATABASE_URL=$FAKEDATA_DATABASE_URL" ghcr.io/randomicu/fakedata-database:latest
             - mvn --batch-mode --file pom.xml -Dspring.profiles.active=test,ci test
 promotions:
   - name: Build production image 
