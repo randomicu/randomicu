@@ -1,4 +1,11 @@
 ## Randomicu Changelog
+### [0.6.1](https://github.com/pythoninja/randomicu/compare/0.6.0...0.6.1) (2020-10-29)
+
+
+### Features
+
+* add database migrations before testing ([9d1e2b2](https://github.com/pythoninja/randomicu/commit/9d1e2b2ff51e4cf82fa245d56c87d2bfb61e6247))
+
 ## [0.6.0](https://github.com/pythoninja/randomicu/compare/0.5.0...0.6.0) (2020-10-27)
 
 
