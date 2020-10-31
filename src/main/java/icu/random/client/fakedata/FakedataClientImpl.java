@@ -4,6 +4,8 @@ import icu.random.client.rest.RestClient;
 import icu.random.dto.fakedata.AddressDto;
 import icu.random.dto.fakedata.PersonDto;
 import icu.random.exception.HttpClientFailureException;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.Map;
 import kong.unirest.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -55,10 +57,10 @@ public class FakedataClientImpl implements FakedataClient {
     var request = httpClient.get(fakedataUrl).routeParam(params);
 
     var url = request.getUrl();
-    log.info("Prepare request to url: {}", url);
+    log.info("Prepare request to url: {}", URLDecoder.decode(url, Charset.defaultCharset()));
 
     return request.asObject(clazz)
-        .ifSuccess(r -> log.info("Response finished successfully. Status code: {}", r.getStatus()))
+        .ifSuccess(r -> log.info("Request finished successfully. Status code: {}", r.getStatus()))
         .ifFailure(r -> {
           var status = r.getStatus();
           log.error("Request finished with error. Status code: {}", status);
