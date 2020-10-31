@@ -16,7 +16,7 @@
     {
       "type": "test",
       "section": "Tests",
-      "hidden": false
+      "hidden": true
     },
     {
       "type": "build",
@@ -26,7 +26,7 @@
     {
       "type": "ci",
       "section": "CI / CD",
-      "hidden": false
+      "hidden": true
     },
     {
       "type": "chore",
