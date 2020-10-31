@@ -3,6 +3,8 @@ package icu.random.client.lipsum;
 import icu.random.client.rest.RestClient;
 import icu.random.client.rest.RestClientImpl;
 import icu.random.dto.lipsum.LipsumDto;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.Map;
 import kong.unirest.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -68,11 +70,12 @@ public class LipsumClientImpl implements LipsumClient {
     var request = restClient.get(lipsumRemoteUrl)
         .routeParam(params);
 
-    log.info("Prepare request to url: {}", request.getUrl());
+    var url = request.getUrl();
+    log.info("Prepare request to url: {}", URLDecoder.decode(url, Charset.defaultCharset()));
 
     return request.asObject(LipsumDto.class)
         .ifSuccess(r -> {
-          log.info("Response finished successfully. Status code: {}", r.getStatus());
+          log.info("Request finished successfully. Status code: {}", r.getStatus());
         })
         .ifFailure(r -> {
           log.error("Request finished with error. Status code: {}", r.getStatus());
