@@ -74,11 +74,7 @@ public class LipsumClientImpl implements LipsumClient {
     log.info("Prepare request to url: {}", URLDecoder.decode(url, Charset.defaultCharset()));
 
     return request.asObject(LipsumDto.class)
-        .ifSuccess(r -> {
-          log.info("Request finished successfully. Status code: {}", r.getStatus());
-        })
-        .ifFailure(r -> {
-          log.error("Request finished with error. Status code: {}", r.getStatus());
-        });
+        .ifSuccess(r -> log.info("Request finished successfully. Status code: {}", r.getStatus()))
+        .ifFailure(r -> log.error("Request finished with error. Status code: {}", r.getStatus()));
   }
 }
