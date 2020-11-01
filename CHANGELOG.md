@@ -1,4 +1,23 @@
 ## Randomicu Changelog
+## [0.7.0](https://github.com/pythoninja/randomicu/compare/0.6.1...0.7.0) (2020-11-01)
+
+
+### Features
+
+* **healthcheck:** add database status ([3ca131a](https://github.com/pythoninja/randomicu/commit/3ca131a7ade3ea485eb48b5c1df73653ca0ff0f8))
+* **healthcheck:** add fakedata-backend status ([93644ce](https://github.com/pythoninja/randomicu/commit/93644cef9121f010b438b84d5f50d446277ce17f))
+* **healthcheck:** add internal fakedata healthcheck ([6bbd597](https://github.com/pythoninja/randomicu/commit/6bbd5970034d221601610bf29a306c0b79b0af21))
+
+
+### Other
+
+* **deps:** bump spring-boot-starter-parent ([6f3af98](https://github.com/pythoninja/randomicu/commit/6f3af984808ed36a3a0bf80939e3dad4e351f6c6))
+
+
+### Refactoring
+
+* decode urls when logging ([1af28b4](https://github.com/pythoninja/randomicu/commit/1af28b4ad377238e566d19fb6afd45499d5c0288))
+
 ### [0.6.1](https://github.com/pythoninja/randomicu/compare/0.6.0...0.6.1) (2020-10-29)
 
 
